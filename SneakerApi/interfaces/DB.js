@@ -20,10 +20,10 @@ async function _connectToDBServer(){
     return dBConnection
 }
 
-async function _getUserWithUsername(username){
+async function _getUserWithUsername(filter){
         const dBConnection = await _connectToDBServer()
         const document = dBConnection.db(ressourcesMonDB.BaseDocument)
         const collection = document.collection(ressourcesMonDB.UserCollection)
-        return await collection.find({UserName:username}).toArray()
+        return await collection.find().toArray()
 }
 module.exports = {connectToDBServer:_connectToDBServer, getUserWithUsername: _getUserWithUsername}

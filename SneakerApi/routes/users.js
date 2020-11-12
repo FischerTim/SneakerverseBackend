@@ -11,8 +11,23 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', async function(req, res, next){
-  console.log(devCredentials)
-    res.send(await userService.login(devCredentials.TestUser.Username,devCredentials.TestUser.Password))
+    const username = req.body.username
+    const password = req.body.password
+
+    let result 
+    try{
+      result = await userService.login(username, password)
+    }catch(err){
+      console.error(err)
+    }
+    const response = {msg:result.msg}
+    const decStatus = parseInt(result.status)
+    console.log(decStatus)
+    if(decStatus >=200 && decStatus < 300){
+      
+      response.token = await result.token
+    }
+    res.status(result.status).json(response)
 })
 
 module.exports = router;
