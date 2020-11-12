@@ -1,13 +1,12 @@
-var express = require('express');
-var expressOasGenerator = require('express-oas-generator');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let express = require('express');
+let expressOasGenerator = require('express-oas-generator');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+let app = express();
 expressOasGenerator.init(app, {});
 
 app.use(logger('dev'));
@@ -18,5 +17,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
 module.exports = app;
