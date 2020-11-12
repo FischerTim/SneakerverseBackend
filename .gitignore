@@ -90,9 +90,10 @@ fastlane/test_output
 iOSInjectionProject/
 
 #VisualStudioCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+SneakerApi/.vscode/
+SneakerApi/.DS_Store
+.DS_Store
+
+#Node Packages
+SneakerApi/node_modules/
+
