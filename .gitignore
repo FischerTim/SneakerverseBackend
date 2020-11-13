@@ -97,3 +97,5 @@ SneakerApi/.DS_Store
 #Node Packages
 SneakerApi/node_modules/
 
+#redis-server db
+SneakerApi/dump.rdb

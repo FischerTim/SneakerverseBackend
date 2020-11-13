@@ -9,12 +9,15 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "buffer": "^5.7.1",
+    "connect-redis": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-oas-generator": "^1.0.28",
+    "express-session": "^1.17.1",
     "mongodb": "^3.6.3",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "redis": "^3.0.2"
   }
 }
