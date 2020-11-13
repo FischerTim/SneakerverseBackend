@@ -20,7 +20,6 @@ function _requestAuthorized(req, res){
 }
 
 function _addAuthorizationToResponse(req,res){
-    console.log("hier")
     if(req.user){
         req.accessToken = jwt.sign({username: req.user.username, role: req.user.role}, accessTokenSecret)
     }else{
