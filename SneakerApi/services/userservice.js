@@ -1,38 +1,26 @@
-
-const bcrypt = require('bcrypt');
-const ressource = require('../ressources/messages')
+const jwt = require('jsonwebtoken');
+const accessTokenSecret = 'youraccesstokensecret';
 
 let DB = require('../interfaces/DB')
 
-async function _login(username,password){
-    
-    const result = {status:400, msg:null, token:null}
-
-    if(username != undefined && password != undefined){
-        const matchlist = await DB.getUserWithUsername(username)
+async function _tryLogin(req,res){
+    if(req.body.user){
+        const requestUser = req.body.user
+ 
+        const matchlist = await DB.getUserWithUsername(requestUser.username)
         if(matchlist.length <= 0){
-            result.status = 400
-            result.msg = ressource.failed.loginfailed
-            return result
+            return 
         }
-        const user = matchlist[0]
-    
-        if(user.username == username && user.password == password  ){
-            result.status = 200
-            result.token = sessionDummy(username,password)
-            result.msg = ressource.successed.logedin
-            return result
+        const dBUser = matchlist[0]
+        if(requestUser.username == dBUser.username && requestUser.password == dBUser.password  ){
+            req.user = { username:dBUser.username, role: dBUser.role}
+        }else{
+            return 
         }
-        result.status = 400
-        result.msg = ressource.failed.loginfailed
-        return result
-        
-    }     
+
+    }else{
+        return
+    }
 }
 
-async function sessionDummy(username,pw){
-    const hash = await bcrypt.hash(username+pw,10)
-    return hash
-}
-
-module.exports = {login:_login }
+module.exports = {tryLogin:_tryLogin}
