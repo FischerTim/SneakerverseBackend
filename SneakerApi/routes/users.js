@@ -24,6 +24,12 @@ router.post('/login',async function(req,res){
 
   authorizationService.addAuthorizationToResponse(req,res)
   functionBasicSendBack(req,res)
+})
+
+router.post('/register',async function(req,res){
+  await userService.tryRegistation(req,res)
+  authorizationService.addAuthorizationToResponse(req,res)
+  functionBasicSendBack(req,res)
 })   
 
 

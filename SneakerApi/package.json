@@ -13,6 +13,7 @@
     "express-oas-generator": "^1.0.28",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
+    "mongoose": "^5.10.13",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.6"
   }

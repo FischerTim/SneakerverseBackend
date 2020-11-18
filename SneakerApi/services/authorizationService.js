@@ -25,8 +25,6 @@ function _addAuthorizationToResponse(req,res){
     }else{
         return 
     }
-    
-    
 }
 
 module.exports = {requestAuthorized:_requestAuthorized ,addAuthorizationToResponse: _addAuthorizationToResponse}
