@@ -10,29 +10,16 @@ async function connect(){
 }
 connect()
 
-async function _getUsers(){
-    return await sessionModel.find()
+
+async function _getRefreshToken(refreshToken){
+  return await sessionModel.find({_refreshToken:refreshToken}) 
 }
 
-async function _getUserWithUsername(username){
-  return await sessionModel.find({_username:username}) 
+async function _createRefreshToken(refreshToken,userId){
+  return await sessionModel.create({_userId:userId, _refreshToken:refreshToken})
 }
-
-async function _registerUser(username,password){
-  return await sessionModel.create({_username:username, _password:password})
-}
-/*
-async function _deleteTodoById(id){
-  return userModel.deleteOne({_id:id}) 
-}
-
-async function _updateTodo(_title, _completed, id){
-  return userModel.updateOne({_id: id}, {title:_title, completed: _completed} )
-}*/
 
 module.exports = {
-  getUserWithUsername:_getUserWithUsername,
-  getUsers:_getUsers,
-  registerUser:_registerUser
-  
+  createRefreshToken:_createRefreshToken,
+  getRefreshToken:_getRefreshToken,
 }

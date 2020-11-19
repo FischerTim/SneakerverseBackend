@@ -38,4 +38,4 @@ async function _tryRegistation(req,res){
     }
 }
 
-module.exports = {tryLogin:_tryLogin,tryRegistation:_tryRegistation}
+module.exports = {tryLogin : _tryLogin, tryRegistation : _tryRegistation}

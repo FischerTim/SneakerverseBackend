@@ -11,7 +11,6 @@ function functionBasicSendBack(req,res){
 }
 
 router.get('/',  function (req,res){
-  
   authorizationService.requestAuthorized(req,res)
   // to something
   authorizationService.addAuthorizationToResponse(req,res)
@@ -23,6 +22,7 @@ router.post('/login',async function(req,res){
   await userService.tryLogin(req,res)
 
   authorizationService.addAuthorizationToResponse(req,res)
+
   functionBasicSendBack(req,res)
 })
 

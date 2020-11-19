@@ -8,9 +8,8 @@ const ressourcesConnection = ressources.connections
 let userModel
 
 async function connect(){
-  userModel = await mongoose.model(ressourcesConnection.userCollection,userSchema)
+  userModel = await mongoose.model(ressourcesConnection.userCollection, userSchema)
 }
-
 connect()
 
 async function _getUsers(){
@@ -24,6 +23,7 @@ async function _getUserWithUsername(username){
 async function _registerUser(username,password){
   return await userModel.create({_username:username, _password:password})
 }
+
 /*
 async function _deleteTodoById(id){
   return userModel.deleteOne({_id:id}) 
