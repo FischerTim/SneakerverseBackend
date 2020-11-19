@@ -1,6 +1,7 @@
 
 const jwt = require('jsonwebtoken')
 const accessTokenSecret = 'youraccesstokensecret'
+let ressources = require('../ressources/constant')
 
 function _requestAuthorized(req, res){
     const authHeader = req.headers.authorization
@@ -12,19 +13,21 @@ function _requestAuthorized(req, res){
             if (!err) {
                 req.user = user;
             }
-            return 
+            res.status(401)
+            req.errorDescription = ressources.responseMsg.invalidToken
+            return
         });
     } else {
+        res.status(401)
+        req.errorDescription = ressources.responseMsg.invalidHeader
         return 
     }
 }
 
 function _addAuthorizationToResponse(req,res){
-    if(req.user){
-        req.accessToken = jwt.sign({username: req.user.username, role: req.user.role}, accessTokenSecret)
-    }else{
-        return 
-    }
+
+    req.accessToken = jwt.sign({username: req.user.username, role: req.user.role}, accessTokenSecret)
+
 }
 
 module.exports = {requestAuthorized:_requestAuthorized ,addAuthorizationToResponse: _addAuthorizationToResponse}
