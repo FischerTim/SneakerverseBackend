@@ -1,0 +1,130 @@
+openapi: 3.0.0
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+paths:
+  /users:
+    get:
+      summary: /users
+      description: add 'Authorization: Bearer token' to your header
+      security:
+        - bearerAuth: []
+      responses: 
+        200:  
+          description: a token
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+        401:
+          description: Unauthorized 
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: This Token is not valid, please relogin
+      tags: []
+  /users/login:
+    post:
+      summary: /users/login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    password:
+                      type: string
+              example:  
+                user:
+                  username: ExampleUserName
+                  password: ExamplePassword
+      responses:
+        200:  
+          description: A user object
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+        401:
+          description: Unauthorized 
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: username password combination is not correct 
+      tags: []
+  /users/register:
+    post:
+      summary: /users/register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    password:
+                      type: string
+              example:  
+                user:
+                  username: ExampleUserName
+                  password: ExamplePassword
+      responses:
+        200:  
+          description: A user object
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+        403:
+          description: Forbidden
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: This username is already used 
+      tags: []
+tags: []
+info:
+  title: Sneakerverse api-documentation
+  version: 0.0.0
+  description: 'Documentation:'

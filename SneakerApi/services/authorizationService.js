@@ -12,6 +12,8 @@ function _requestAuthorized(req, res){
         jwt.verify(token, accessTokenSecret, (err, user) => {
             if (!err) {
                 req.user = user;
+                req.accessToken = token
+                return
             }
             res.status(401)
             req.errorDescription = ressources.responseMsg.invalidToken
