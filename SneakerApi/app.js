@@ -8,6 +8,7 @@ const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./documentation/openApi3.0.yaml');
 
 let usersRouter = require('./routes/users');
+let offerRouter = require('./routes/offers');
 let app = express();
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -17,5 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use('/offer', offerRouter);
 app.use('/users', usersRouter);
 module.exports = app;
