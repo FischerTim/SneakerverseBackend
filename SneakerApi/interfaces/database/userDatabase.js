@@ -19,7 +19,7 @@ async function _getUsers() {
 }
 
 async function _getUserWithUsername(username) {
-  return await userModel.find({ _username: username });
+  return userModel.findOne({_username: username});
 }
 
 async function _registerUser(username, password) {
@@ -39,22 +39,30 @@ async function _removeOfferId(username,id){
   console.log(offerWithoutId)
   return userModel.updateOne({_username: username}, {_offers: offerWithoutId} )
 }
-
-
-/*
-async function _deleteTodoById(id){
-  return userModel.deleteOne({_id:id}) 
+async function _addFavoriteId(username,id){
+  let user = await userModel.findOne({_username: username});
+  user._favorites.push(id)
+  return userModel.updateOne({_username: username}, {_favorites: user._favorites} )
+}
+async function _removeFavoriteId(username,id){
+  let user = await userModel.findOne({_username: username});
+  let favoritesWithoutId = user._favorites.filter(_id =>  _id != id)
+  return userModel.updateOne({_username: username}, {_favorites: favoritesWithoutId} )
+}
+async function _getFavoriteId(username){
+  let user = await userModel.findOne({_username: username});
+  return user._favorites
 }
 
-async function _updateTodo(_title, _completed, id){
-  return userModel.updateOne({_id: id}, {title:_title, completed: _completed} )
-}*/
 
 module.exports = {
   getUserWithUsername: _getUserWithUsername,
   getUsers: _getUsers,
   registerUser: _registerUser,
+  getFavoriteId:_getFavoriteId,
   updateUserToken:_updateUserToken,
   addOfferId:_addOfferId,
-  removeOfferId:_removeOfferId
+  removeOfferId:_removeOfferId,
+  addFavoriteId:_addFavoriteId,
+  removeFavoriteId:_removeFavoriteId
 };

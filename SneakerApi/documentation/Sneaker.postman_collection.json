@@ -121,6 +121,121 @@
 			"name": "User",
 			"item": [
 				{
+					"name": "Favorite",
+					"item": [
+						{
+							"name": "add favorite",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3MjA5fQ.WhLh7iGqDpYp51LE98cwQiUsZV5VLM_lQRqM0JOHTf0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id\":\"123456sdfsdf432\"}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove favorite",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3MzUxfQ.quCorS1KCGhxeDJFIWka2ZWbWmWn5v-KI-0XpsP35rU"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id\":\"123456sdfsdf432\"}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all favorits",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3NjQxfQ.T6-sO0kQFrZWMIHuF6wjawiI4vKsJSDmP8lU2I5k2Rk"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "login",
 					"request": {
 						"method": "POST",

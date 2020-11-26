@@ -14,11 +14,9 @@ async function _registration(req, res) {
     return requestService.createFailResponse(res,req,statusCode.BAD_SYNTAX,responseMsg.INVALID_BODY);
   }
   const requestUser = req.body.user;
-  const matchlist = await userDatabase.getUserWithUsername(
-      requestUser.username
-  );
-
-  if (matchlist.length > 0) {
+  const databaseUser = await userDatabase.getUserWithUsername(requestUser.username);
+  console.log(databaseUser)
+  if (databaseUser) {
     // Already Exits
     return requestService.createFailResponse(res,req,statusCode.CONFLICT,responseMsg.USERNAME_USED);
   }
@@ -34,26 +32,24 @@ async function _login(req, res) {
   }
 
   const requestUser = req.body.user;
-  const matchlist = await userDatabase.getUserWithUsername(
-      requestUser.username
-  );
+  let databaseUser = await userDatabase.getUserWithUsername(requestUser.username);
 
-  if (matchlist.length <= 0) {
+  if (!databaseUser) {
     // Unauthorized
     return requestService.createFailResponse(res,req,statusCode.NOT_FOUND,responseMsg.USER_NOT_FOUND);
   }
 
-  const dBUser = await matchlist[0].toObject();
+  databaseUser = await databaseUser.toObject();
   if (
-      requestUser.username != dBUser._username ||
-      requestUser.password != dBUser._password
+      requestUser.username != databaseUser._username ||
+      requestUser.password != databaseUser._password
   ) {
     return requestService.createFailResponse(res,req,statusCode.UNAUTHORIZED,responseMsg.AUTHORIZATION_FAILED);
   }
-  const userToken = jwt.sign({ username: dBUser._username, role: dBUser._role },accessTokenSecret)
-  await userDatabase.updateUserToken(dBUser._username, userToken)
+  const userToken = jwt.sign({ username: databaseUser._username, role: databaseUser._role },accessTokenSecret)
+  await userDatabase.updateUserToken(databaseUser._username, userToken)
   req.accessToken = userToken
-  req.user = { username: dBUser._username, role: dBUser._role };
+  req.user = { username: databaseUser._username, role: databaseUser._role };
   return;
 }
 
@@ -82,14 +78,14 @@ async function _authorizedRequest(req, res) {
     return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.INVALID_TOKEN);
   }
 
-  const matchlist = await userDatabase.getUserWithUsername(user.username);
+  let databaseUser = await userDatabase.getUserWithUsername(user.username);
 
-  if (matchlist.length <= 0) {
+  if (!databaseUser) {
     return requestService.createFailResponse(res, req, statusCode.NOT_FOUND,responseMsg.USER_NOT_FOUND);
   }
 
-  const dBUser = await matchlist[0].toObject();
-  if (dBUser._sessionToken != token) {
+  databaseUser = await databaseUser.toObject();
+  if (databaseUser._sessionToken != token) {
     return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.INVALID_TOKEN);
   }
   req.user = user;
@@ -103,6 +99,47 @@ async function _removeOfferId(username,id) {
   await userDatabase.removeOfferId(username, id)
 }
 
+async function _addFavoriteId(req,res) {
+  if(!req.user){
+    return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+  }
+  if (!req.body.id) {
+    return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
+  }
+
+  await userDatabase.addFavoriteId(req.user.username, req.body.id)
+}
+
+async function _removeFavoriteId(req,res) {
+  if(!req.user){
+    return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+  }
+  if (!req.body.id) {
+    return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
+  }
+
+  await userDatabase.removeFavoriteId(req.user.username, req.body.id)
+}
+
+async function _getFavoritesId(req,res) {
+  if(!req.user){
+    return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+  }
+  req.data.favorites = await userDatabase.getFavoriteId(req.user.username)
+}
 
 
-module.exports = {removeOfferId:_removeOfferId, addOfferId:_addOfferId,login: _login, registration: _registration ,logout:_logout,authorizedRequest:_authorizedRequest};
+
+
+module.exports = {
+  removeOfferId:_removeOfferId,
+  addOfferId:_addOfferId,
+  login: _login,
+  registration: _registration,
+  logout:_logout,
+  authorizedRequest:_authorizedRequest,
+  addFavoriteId:_addFavoriteId,
+  removeFavoriteId:_removeFavoriteId,
+  getFavoritesId:_getFavoritesId
+
+};

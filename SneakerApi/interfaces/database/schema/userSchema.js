@@ -6,5 +6,6 @@ module.exports = new mongoose.Schema({
   _password: { type: String, required: true },
   _role: { type: String, default: "User" },
   _sessionToken: { type: String},
-  _offers: {type: []}
+  _offers: {type: []},
+  _favorites: {type: []}
 });

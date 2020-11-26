@@ -27,4 +27,24 @@ router.post("/register", async function (req, res) {
   ])
 });
 
+router.post("/favorite", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req,res,[
+        userService.authorizedRequest,
+        userService.addFavoriteId
+    ])
+});
+router.delete("/favorite", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req,res,[
+        userService.authorizedRequest,
+        userService.removeFavoriteId
+    ])
+});
+router.get("/favorite", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req,res,[
+        userService.authorizedRequest,
+        userService.getFavoritesId
+    ])
+});
+
+
 module.exports = router;
