@@ -212,9 +212,8 @@ paths:
                 example:
                   errorDescription: no Ressource found
       tags: [ ]
-  /offer/insert:
     post:
-      summary: /offer/insert
+      summary: /offer
       description: add 'Authorization: Bearer token' to your header
       security:
         - bearerAuth: [ ]

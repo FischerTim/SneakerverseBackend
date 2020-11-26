@@ -21,6 +21,13 @@ async function _offerList() {
 async function _offerWithName(name) {
   return await offerModel.find({ _name: name });
 }
+async function _offerWithId(id) {
+  return offerModel.findOne({_id: id});
+}
+async function _deleteOfferWithId(id) {
+  return offerModel.deleteOne({_id: id});
+}
+
 
 async function _addOffer(name,description,price,size,brand,condition,ownerName) {
   try{
@@ -36,7 +43,6 @@ async function _addOffer(name,description,price,size,brand,condition,ownerName) 
   }catch (e) {
     return null
   }
-
 }
 
 /*
@@ -52,4 +58,6 @@ module.exports = {
   offerList: _offerList,
   offerWithName: _offerWithName,
   addOffer: _addOffer,
+  offerWithId:_offerWithId,
+  deleteOfferWithId:_deleteOfferWithId
 };

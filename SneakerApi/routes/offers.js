@@ -7,16 +7,22 @@ const userService = require("../services/userservice");
 
 router.get("/", async function (req, res) {
   await requestService.runEachFunctionAsPipeline(req,res, [
-        userService.authorizedRequest,
-        offerservice.offerList
+    userService.authorizedRequest,
+    offerservice.offerList
   ])
 });
 
-router.post("/insert", async function (req, res) {
+router.post("/", async function (req, res) {
   await requestService.runEachFunctionAsPipeline(req,res, [
     userService.authorizedRequest,
     offerservice.addOffer
   ])
+});
+router.delete("/", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req,res, [
+        userService.authorizedRequest,
+        offerservice.deleteOffer
+    ])
 });
 
 module.exports = router;

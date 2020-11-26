@@ -31,7 +31,23 @@ async function _addOffer(req, res) {
   }
   return;
 
-
+}
+async function _deleteOffer(req,res){
+  if(! req.user){
+    return requestService.createFailResponse(res, req, 401, ressources.responseMsg.unauthorized);
+  }
+  if (! req.body.id) {
+    return requestService.createFailResponse(res,req,401,ressources.responseMsg.EmptyRessource);
+  }
+  const newOffer = await offerDatabase.offerWithId(req.body.id)
+  if(! newOffer){
+    return requestService.createFailResponse(res,req,400,ressources.responseMsg.default);
+  }
+  if(newOffer._ownerName != req.user.username){
+    return requestService.createFailResponse(res,req,400,ressources.responseMsg.default);
+  }
+  await offerDatabase.deleteOfferWithId(req.body.id);
+  return
 }
 
-module.exports = { offerList: _offerList, addOffer: _addOffer };
+module.exports = { offerList: _offerList, addOffer: _addOffer ,deleteOffer:_deleteOffer};
