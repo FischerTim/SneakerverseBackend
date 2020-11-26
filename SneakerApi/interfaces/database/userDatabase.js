@@ -25,6 +25,9 @@ async function _getUserWithUsername(username) {
 async function _registerUser(username, password) {
   return await userModel.create({ _username: username, _password: password });
 }
+async function _updateUserToken(username,token){
+  return userModel.updateOne({_username: username}, {_sessionToken:token} )
+}
 
 /*
 async function _deleteTodoById(id){
@@ -39,4 +42,5 @@ module.exports = {
   getUserWithUsername: _getUserWithUsername,
   getUsers: _getUsers,
   registerUser: _registerUser,
+  updateUserToken:_updateUserToken
 };

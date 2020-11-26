@@ -2,65 +2,30 @@ let express = require("express");
 let router = express.Router();
 let ressources = require("../ressources/constant");
 let userService = require("../services/userService");
-let statusService = require("../services/statusService");
-let authorizationService = require("../services/authorizationService");
+let requestService = require("../services/requestService");
 
-function sendData(req, res) {
-  const result = {};
-  result.accessToken = req.accessToken ? req.accessToken : {};
-  res.json(result);
-}
-
-function sendError(req, res) {
-  const result = {};
-  result.errorDescription = req.errorDescription
-    ? req.errorDescription
-    : ressources.responseMsg.default;
-  res.json(result);
-}
-
-router.get("/", function (req, res) {
-  authorizationService.requestAuthorized(req, res);
-
-  if (statusService.resquestFaild(res)) {
-    sendError(req, res);
-    return;
-  }
-  sendData(req, res);
+router.get("/", async function (req, res) {
+  await requestService.runEachFunctionAsPipeline(req,res,[
+      userService.authorizedRequest
+  ])
+});
+router.post("/logout", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req,res,[
+        userService.authorizedRequest,
+        userService.logout
+    ])
 });
 
 router.post("/login", async function (req, res) {
-  await userService.login(req, res);
-
-  if (statusService.resquestFaild(res)) {
-    sendError(req, res);
-    return;
-  }
-
-  authorizationService.addAuthorizationToResponse(req, res);
-
-  if (statusService.resquestFaild(res)) {
-    sendError(req, res);
-    return;
-  }
-
-  sendData(req, res);
+  await requestService.runEachFunctionAsPipeline(req,res,[
+      userService.login
+  ])
 });
 
 router.post("/register", async function (req, res) {
-  await userService.registation(req, res);
-
-  if (statusService.resquestFaild(res)) {
-    sendError(req, res);
-    return;
-  }
-  authorizationService.addAuthorizationToResponse(req, res);
-
-  if (statusService.resquestFaild(res)) {
-    sendError(req, res);
-    return;
-  }
-  sendData(req, res);
+  await requestService.runEachFunctionAsPipeline(req,res,[
+      userService.registation
+  ])
 });
 
 module.exports = router;

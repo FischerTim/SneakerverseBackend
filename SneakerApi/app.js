@@ -18,7 +18,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use((req,res,next) =>{
+    req.data={}
+    next()
+})
 app.use('/offer', offerRouter);
 app.use('/users', usersRouter);
 module.exports = app;
