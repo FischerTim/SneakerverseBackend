@@ -19,9 +19,14 @@ function sendError(req, res) {
     : ressources.responseMsg.default;
   res.json(result);
 }
+function addDataToReq(req){
+  req.data={}
+}
 
 router.get("/", async function (req, res) {
   authorizationService.requestAuthorized(req, res);
+
+  addDataToReq(req)
 
   if (statusService.breakRequest(res)) {
     sendError(req, res);
@@ -38,6 +43,8 @@ router.get("/", async function (req, res) {
 });
 router.post("/", async function (req, res) {
   authorizationService.requestAuthorized(req, res);
+
+  addDataToReq(req)
 
   if (statusService.breakRequest(res)) {
     sendError(req, res);

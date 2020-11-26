@@ -1,6 +1,6 @@
 const mongoose = require("./database");
 const ressources = require("../../ressources/constant");
-const userSchema = require("./schema/offerSchema");
+const userSchema = require("./schema/userSchema");
 
 const ressourcesConnection = ressources.connections;
 

@@ -39,7 +39,6 @@ async function _login(req, res) {
 async function _registation(req, res) {
   if (req.body.user) {
     const requestUser = req.body.user;
-
     const matchlist = await userDatabase.getUserWithUsername(
       requestUser.username
     );

@@ -22,8 +22,21 @@ async function _offerWithName(name) {
   return await offerModel.find({ _name: name });
 }
 
-async function _addOffer(name) {
-  return await offerModel.create({ _name: name });
+async function _addOffer(name,description,price,size,brand,condition,ownerName) {
+  try{
+    return await offerModel.create({
+      _name: name,
+      _description: description,
+      _price: price,
+      _size: size,
+      _brand: brand,
+      _condition: condition,
+      _ownerName: ownerName
+    });
+  }catch (e) {
+    return null
+  }
+
 }
 
 /*

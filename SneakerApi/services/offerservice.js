@@ -9,18 +9,21 @@ async function _offerList(req, res) {
     return;
   }
 
-  const _data = req.data ? req.data : {};
-  _data.offerList = offerlist;
-  console.log(_data);
-  req.data = _data;
+  req.data.offerList = offerlist;
   return;
 }
 async function _addOffer(req, res) {
   if (req.body.offer) {
     const requestOffer = req.body.offer;
 
-    await offerDatabase.addOffer(requestOffer.name);
-    return await _offerList(req, res);
+    const newOffer = await offerDatabase.addOffer(requestOffer.name,requestOffer.description,requestOffer.price,requestOffer.size,requestOffer.brand,requestOffer.condition,req.user.username);
+    if(!newOffer){
+      res.status(400);
+      req.errorDescription = ressources.responseMsg.default;
+      return
+    }
+    return;
+
   } else {
     // Unauthorized
     res.status(401);

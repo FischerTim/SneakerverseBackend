@@ -94,6 +94,7 @@ SneakerApi/.vscode/
 SneakerApi/.DS_Store
 .DS_Store
 
+.idea
 #Node Packages
 SneakerApi/node_modules/
 
