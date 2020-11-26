@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const accessTokenSecret = "youraccesstokensecret";
 let ressources = require("../ressources/constant");
+const statusService = require("./statusService");
 
 function _requestAuthorized(req, res) {
   const authHeader = req.headers.authorization;
@@ -14,14 +15,10 @@ function _requestAuthorized(req, res) {
         req.accessToken = token;
         return;
       }
-      res.status(401);
-      req.errorDescription = ressources.responseMsg.invalidToken;
-      return;
+      return statusService.createFailResponse(res,req,401,ressources.responseMsg.invalidToken);
     });
   } else {
-    res.status(401);
-    req.errorDescription = ressources.responseMsg.invalidHeader;
-    return;
+    return statusService.createFailResponse(res,req,401,ressources.responseMsg.invalidHeader);
   }
 }
 

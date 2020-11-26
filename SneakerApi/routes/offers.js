@@ -26,34 +26,37 @@ function addDataToReq(req){
 router.get("/", async function (req, res) {
   authorizationService.requestAuthorized(req, res);
 
+
   addDataToReq(req)
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
+
     sendError(req, res);
     return;
   }
 
   await offerservice.offerList(req, res);
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }
   sendData(req, res);
 });
+
 router.post("/", async function (req, res) {
   authorizationService.requestAuthorized(req, res);
 
   addDataToReq(req)
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }
 
   await offerservice.addOffer(req, res);
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }

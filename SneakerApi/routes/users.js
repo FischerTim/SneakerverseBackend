@@ -22,7 +22,7 @@ function sendError(req, res) {
 router.get("/", function (req, res) {
   authorizationService.requestAuthorized(req, res);
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }
@@ -32,14 +32,14 @@ router.get("/", function (req, res) {
 router.post("/login", async function (req, res) {
   await userService.login(req, res);
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }
 
   authorizationService.addAuthorizationToResponse(req, res);
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }
@@ -50,13 +50,13 @@ router.post("/login", async function (req, res) {
 router.post("/register", async function (req, res) {
   await userService.registation(req, res);
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }
   authorizationService.addAuthorizationToResponse(req, res);
 
-  if (statusService.breakRequest(res)) {
+  if (statusService.resquestFaild(res)) {
     sendError(req, res);
     return;
   }

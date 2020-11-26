@@ -1,6 +1,6 @@
 let userDatabase = require("../interfaces/database/userDatabase");
 let ressources = require("../ressources/constant");
-
+let statusService = require("./statusService")
 async function _login(req, res) {
   if (req.body.user) {
     const requestUser = req.body.user;
@@ -11,9 +11,7 @@ async function _login(req, res) {
 
     if (matchlist.length <= 0) {
       // Unauthorized
-      res.status(401);
-      req.errorDescription = ressources.responseMsg.unauthorized;
-      return;
+      return statusService.createFailResponse(res,req,401,ressources.responseMsg.unauthorized);
     }
 
     const dBUser = await matchlist[0].toObject();
@@ -24,16 +22,10 @@ async function _login(req, res) {
       req.user = { username: dBUser._username, role: dBUser._role };
       return;
     } else {
-      // Unauthorized
-      res.status(401);
-      req.errorDescription = ressources.responseMsg.unauthorized;
-      return;
+      return statusService.createFailResponse(res,req,401,ressources.responseMsg.unauthorized);
     }
   } else {
-    // Unauthorized
-    res.status(401);
-    req.errorDescription = ressources.responseMsg.userBodyMissig;
-    return;
+    return statusService.createFailResponse(res,req,401,ressources.responseMsg.userBodyMissig);
   }
 }
 async function _registation(req, res) {
@@ -44,8 +36,7 @@ async function _registation(req, res) {
     );
     if (matchlist.length > 0) {
       // Already Exits
-      res.status(403);
-      req.errorDescription = ressources.responseMsg.userNameAlreadyUsed;
+      return statusService.createFailResponse(res,req,403,ressources.responseMsg.userNameAlreadyUsed);
       return;
     }
     await userDatabase.registerUser(requestUser.username, requestUser.password);
@@ -53,9 +44,7 @@ async function _registation(req, res) {
     return await _login(req, res);
   } else {
     // Unauthorized
-    res.status(401);
-    req.errorDescription = ressources.responseMsg.userBodyMissig;
-    return;
+    return statusService.createFailResponse(res,req,401,ressources.responseMsg.userBodyMissig);
   }
 }
 
