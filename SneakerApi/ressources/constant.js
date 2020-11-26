@@ -21,19 +21,32 @@ const _connections = {
   connectionUrl:
     "mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.57rjy.mongodb.net/<DATABASE>?retryWrites=true&w=majority",
 };
+const _statusCode = {
+  BAD_REQUEST: 400,
+  BAD_SYNTAX: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  CONFLICT: 409,
+  UNKNOWN: 500
+
+}
 const _responseMsg = {
-  default: "Sorry something went wrong. Please try it again",
-  userBodyMissig:
-    "Please add {user:{username:YOURUSERNAME, password:YOURPASSWORD}} to request body",
-  unauthorized: "username password combination is not correct",
-  userNameAlreadyUsed: "This username is already used",
-  invalidHeader: "The header is not valid",
-  invalidToken: "This Token is not valid, please relogin",
-  EmptyRessource: "no Ressource found",
+  BASE: "Something went wrong. Please try it again",
+  INVALID_BODY: "You body was not correct",
+  INVALID_TOKEN: "The token you send in the header was wrong",
+  MISSING_AUTHORIZATION_HEADER: "you need a authorization header",
+  USERNAME_USED: "This username is already used",
+  USER_NOT_FOUND: "No user with this username found",
+  AUTHORIZATION_FAILED: "Authorization failed",
+  DATABASE_CREATION_FAILED: "database failed to create ressource",
+  OFFER_NOT_FOUND: "Can't find ressource",
+  NO_PERMISSIONS: "You are not permit to use that ressource",
 };
 
 module.exports = {
   credentials: _credentials,
   connections: _connections,
   responseMsg: _responseMsg,
+  statusCode: _statusCode
 };

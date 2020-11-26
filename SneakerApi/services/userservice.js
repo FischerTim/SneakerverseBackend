@@ -3,10 +3,12 @@ const accessTokenSecret = "youraccesstokensecret";
 let userDatabase = require("../interfaces/database/userDatabase");
 let ressources = require("../ressources/constant");
 let requestService = require("./requestService")
+const statusCode = ressources.statusCode
+const responseMsg = ressources.responseMsg
 
-async function _registation(req, res) {
-  if (req.body.user) {
-    return requestService.createFailResponse(res,req,401,ressources.responseMsg.userBodyMissig);
+async function _registration(req, res) {
+  if (!req.body.user) {
+    return requestService.createFailResponse(res,req,statusCode.BAD_SYNTAX,responseMsg.INVALID_BODY);
   }
   const requestUser = req.body.user;
   const matchlist = await userDatabase.getUserWithUsername(
@@ -15,7 +17,7 @@ async function _registation(req, res) {
 
   if (matchlist.length > 0) {
     // Already Exits
-    return requestService.createFailResponse(res,req,403,ressources.responseMsg.userNameAlreadyUsed);
+    return requestService.createFailResponse(res,req,statusCode.CONFLICT,responseMsg.USERNAME_USED);
   }
 
   await userDatabase.registerUser(requestUser.username, requestUser.password);
@@ -25,7 +27,7 @@ async function _registation(req, res) {
 
 async function _login(req, res) {
   if ( ! req.body.user) {
-    return requestService.createFailResponse(res,req,401,ressources.responseMsg.userBodyMissig);
+    return requestService.createFailResponse(res,req,statusCode.BAD_SYNTAX,responseMsg.INVALID_BODY);
   }
 
   const requestUser = req.body.user;
@@ -35,7 +37,7 @@ async function _login(req, res) {
 
   if (matchlist.length <= 0) {
     // Unauthorized
-    return requestService.createFailResponse(res,req,401,ressources.responseMsg.unauthorized);
+    return requestService.createFailResponse(res,req,statusCode.NOT_FOUND,responseMsg.USER_NOT_FOUND);
   }
 
   const dBUser = await matchlist[0].toObject();
@@ -43,7 +45,7 @@ async function _login(req, res) {
       requestUser.username != dBUser._username ||
       requestUser.password != dBUser._password
   ) {
-    return requestService.createFailResponse(res,req,401,ressources.responseMsg.unauthorized);
+    return requestService.createFailResponse(res,req,statusCode.UNAUTHORIZED,responseMsg.AUTHORIZATION_FAILED);
   }
   const userToken = jwt.sign({ username: dBUser._username, role: dBUser._role },accessTokenSecret)
   await userDatabase.updateUserToken(dBUser._username, userToken)
@@ -54,7 +56,7 @@ async function _login(req, res) {
 
 async function _logout(req,res){
   if(!req.user){
-    return requestService.createFailResponse(res, req, 401, ressources.responseMsg.unauthorized);
+    return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
   }
   await userDatabase.updateUserToken(req.user.username, "")
   delete req.accessToken
@@ -65,7 +67,7 @@ async function _authorizedRequest(req, res) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return requestService.createFailResponse(res, req, 401, ressources.responseMsg.invalidHeader);
+    return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED,responseMsg.MISSING_AUTHORIZATION_HEADER);
   }
 
   const token = authHeader.split(" ")[1];
@@ -74,23 +76,22 @@ async function _authorizedRequest(req, res) {
   try{
     user = await jwt.verify(token, accessTokenSecret)
   }catch (e) {
-    return requestService.createFailResponse(res, req, 401, ressources.responseMsg.invalidToken);
+    return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.INVALID_TOKEN);
   }
 
   const matchlist = await userDatabase.getUserWithUsername(user.username);
 
   if (matchlist.length <= 0) {
-    // Unauthorized
-    return requestService.createFailResponse(res, req, 401, ressources.responseMsg.unauthorized);
+    return requestService.createFailResponse(res, req, statusCode.NOT_FOUND,responseMsg.USER_NOT_FOUND);
   }
 
   const dBUser = await matchlist[0].toObject();
   if (dBUser._sessionToken != token) {
-    return requestService.createFailResponse(res, req, 401, ressources.responseMsg.unauthorized);
+    return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.INVALID_TOKEN);
   }
   req.user = user;
   req.accessToken = token;
   return;
 }
 
-module.exports = { login: _login, registation: _registation ,logout:_logout,authorizedRequest:_authorizedRequest};
+module.exports = { login: _login, registration: _registration ,logout:_logout,authorizedRequest:_authorizedRequest};

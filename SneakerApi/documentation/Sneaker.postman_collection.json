@@ -6,99 +6,267 @@
 	},
 	"item": [
 		{
-			"name": "Registration",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "offer",
+			"item": [
+				{
+					"name": "Get all offers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
 					},
-					{
-						"key": "Authorization",
-						"value": "bearer ",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"user\": {\n    \"username\":\"TestUser\",\n    \"password\":\"TestPassword\"\n}}"
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDYzOTg3Mjh9.s4Bq0RFhVWNrnLWXRCaLmA0hWXwSQgmymvNRdZtuz8w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user\": {\n    \"username\":\"TestUser\",\n    \"password\":\"TestPassword\"\n}}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/offer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"offer"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/users/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"register"
-					]
+				{
+					"name": "addOffer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDU4ODg2ODl9.atGLlbni3OpoL_ICiG7X8WxTigbEyJMJJhw8-ZUukyU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"offer\": {\n    \"name\":\"Testoffer2\",\n    \"description\": \"New Offer\",\n    \"price\": 9.10,\n    \"size\": 9,\n    \"brand\": \"Nike\",\n    \"condition\": \"New\"\n}}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/offer/insert",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"offer",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete offer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDA5NjE1fQ.Kt7b5XjrctYhfYqh53WeAhU7Dznv9rq-tZtyzKwNzkc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"id\":\"5fbfddc7e962505b79541fd6\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/offer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"offer"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"user\": {\n    \"username\":\"TestUser\",\n    \"password\":\"TestPassword\"\n}}"
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user\": {\n    \"username\":\"TestUser\",\n    \"password\":\"TestPassword\"\n}}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/users/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Token Check",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"user\": {\n    \"username\":\"TestUser\",\n    \"password\":\"TestPassword\"\n}}"
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user\": {\n    \"username\":\"TestUser012\",\n    \"password\":\"TestPassword\"\n}}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/users/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"login"
-					]
+				{
+					"name": "Token Check",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDYzOTk3OTJ9.AtiXbciF9N88EZnmm2OAMYDJntu-aujB-htZbzGWyJY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDYzOTk3OTJ9.AtiXbciF9N88EZnmm2OAMYDJntu-aujB-htZbzGWyJY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

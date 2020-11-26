@@ -24,7 +24,7 @@ router.post("/login", async function (req, res) {
 
 router.post("/register", async function (req, res) {
   await requestService.runEachFunctionAsPipeline(req,res,[
-      userService.registation
+      userService.registration
   ])
 });
 
