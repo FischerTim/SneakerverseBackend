@@ -1,6 +1,6 @@
 let express = require("express");
 let router = express.Router();
-let ressources = require("../ressources/constant");
+let ressources = require("../resources/constant");
 let offerservice = require("../services/offerservice");
 let requestService = require("../services/requestService");
 const userService = require("../services/userservice");

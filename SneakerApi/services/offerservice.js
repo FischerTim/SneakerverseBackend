@@ -1,23 +1,26 @@
 let offerDatabase = require("../interfaces/database/offerDatabase");
-let ressources = require("../ressources/constant");
+let resources = require("../resources/constant");
 const requestService = require("./requestService");
-const statusCode = ressources.statusCode
-const responseMsg = ressources.responseMsg
+const userService = require("../services/userService");
+const statusCode = resources.statusCode
+const responseMsg = resources.responseMsg
 
 async function _offerList(req, res) {
   if( ! req.user){
     return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
   }
-  const offerlist = await offerDatabase.offerList();
-  if (offerlist.length <= 0) {
+  const offers = await offerDatabase.offerList();
+  if (offers.length <= 0) {
 
     req.data.offerlist = {};
     return;
   }
 
-  req.data.offerlist = offerlist;
+  req.data.offerlist = offers;
   return;
 }
+
+
 async function _addOffer(req, res) {
   if(!req.user){
     return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
@@ -33,10 +36,12 @@ async function _addOffer(req, res) {
   if(!newOffer){
     return requestService.createFailResponse(res,req,statusCode.UNKNOWN,responseMsg.DATABASE_CREATION_FAILED);
   }
+  await userService.addOfferId(req.user.username, newOffer._id)
+
   return;
 }
 
-async function _deleteOffer(req,res){
+async function _deleteOffer(req, res){
   if(!req.user){
     return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
   }
@@ -48,10 +53,15 @@ async function _deleteOffer(req,res){
     return requestService.createFailResponse(res, req, statusCode.NOT_FOUND, responseMsg.OFFER_NOT_FOUND);
   }
   if(newOffer._ownerName != req.user.username){
-    return requestService.createFailResponse(res, req,statusCode.FORBIDDEN, responseMsg.NO_PERMISSIONS);
+    return requestService.createFailResponse(res, req, statusCode.FORBIDDEN, responseMsg.NO_PERMISSIONS);
   }
   await offerDatabase.deleteOfferWithId(req.body.id);
+  await userService.removeOfferId(req.user.username, req.body.id);
   return
 }
 
-module.exports = { offerList: _offerList, addOffer: _addOffer ,deleteOffer:_deleteOffer};
+module.exports = {
+  offerList: _offerList,
+  addOffer: _addOffer,
+  deleteOffer:_deleteOffer
+};

@@ -1,10 +1,13 @@
 const jwt = require("jsonwebtoken");
 const accessTokenSecret = "youraccesstokensecret";
 let userDatabase = require("../interfaces/database/userDatabase");
-let ressources = require("../ressources/constant");
+let resources = require("../resources/constant");
 let requestService = require("./requestService")
-const statusCode = ressources.statusCode
-const responseMsg = ressources.responseMsg
+const statusCode = resources.statusCode
+const responseMsg = resources.responseMsg
+
+
+
 
 async function _registration(req, res) {
   if (!req.body.user) {
@@ -93,5 +96,13 @@ async function _authorizedRequest(req, res) {
   req.accessToken = token;
   return;
 }
+async function _addOfferId(username,id) {
+  await userDatabase.addOfferId(username, id)
+}
+async function _removeOfferId(username,id) {
+  await userDatabase.removeOfferId(username, id)
+}
 
-module.exports = { login: _login, registration: _registration ,logout:_logout,authorizedRequest:_authorizedRequest};
+
+
+module.exports = {removeOfferId:_removeOfferId, addOfferId:_addOfferId,login: _login, registration: _registration ,logout:_logout,authorizedRequest:_authorizedRequest};
