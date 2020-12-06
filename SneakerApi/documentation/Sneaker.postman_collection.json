@@ -23,8 +23,8 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDYzOTg3Mjh9.s4Bq0RFhVWNrnLWXRCaLmA0hWXwSQgmymvNRdZtuz8w",
-								"type": "text"
+								"type": "text",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmJmZjU1YjE3NzhkNjYxYjE0NTI4NmMiLCJpYXQiOjE2MDcxMDI5MTZ9.7yvq6K0Gbn5SYkeXyX2bE9mdknguGf69i-Ly8yxgkik"
 							}
 						],
 						"body": {
@@ -57,24 +57,23 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDU4ODg2ODl9.atGLlbni3OpoL_ICiG7X8WxTigbEyJMJJhw8-ZUukyU",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE1NzA3fQ.Y5RMlav1ZoTSITyYzpBhoaCZHkR3nGc3b_eXZHsdnAo",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"offer\": {\n    \"name\":\"Testoffer2\",\n    \"description\": \"New Offer\",\n    \"price\": 9.10,\n    \"size\": 9,\n    \"brand\": \"Nike\",\n    \"condition\": \"New\"\n}}"
+							"raw": "{\"offer\": {\n    \"name\":\"Tims Anzeige\",\n    \"description\": \"New Offer\",\n    \"price\": 9.10,\n    \"size\": 9,\n    \"brand\": \"Nike\",\n    \"condition\": \"New\"\n}}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/offer/insert",
+							"raw": "http://localhost:3000/offer",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"offer",
-								"insert"
+								"offer"
 							]
 						}
 					},
@@ -92,13 +91,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDA5NjE1fQ.Kt7b5XjrctYhfYqh53WeAhU7Dznv9rq-tZtyzKwNzkc",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE1NzA3fQ.Y5RMlav1ZoTSITyYzpBhoaCZHkR3nGc3b_eXZHsdnAo",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"id\":\"5fbfddc7e962505b79541fd6\"\n}"
+							"raw": "{ \"id\":\"5fbff5c81778d661b145286e\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:3000/offer",
@@ -133,17 +132,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"user\": {\n    \"username\":\"TestUser\",\n    \"password\":\"TestPassword\"\n}}"
+							"raw": "{\"user\": {\n    \"username\":\"Tim119\",\n    \"password\":\"TestPassword\"\n}}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/login",
+							"raw": "http://localhost:3000/user/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
+								"user",
 								"login"
 							]
 						}
@@ -159,27 +158,21 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer ",
-								"type": "text",
-								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"user\": {\n    \"username\":\"TestUser012\",\n    \"password\":\"TestPassword\"\n}}"
+							"raw": "{\"user\": {\n    \"username\":\"Tim119\",\n    \"password\":\"TestPassword\"\n}}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/register",
+							"raw": "http://localhost:3000/user/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
+								"user",
 								"register"
 							]
 						}
@@ -201,7 +194,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDYzOTk3OTJ9.AtiXbciF9N88EZnmm2OAMYDJntu-aujB-htZbzGWyJY",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmJmZjU1YjE3NzhkNjYxYjE0NTI4NmMiLCJpYXQiOjE2MDcxMDI5MTZ9.7yvq6K0Gbn5SYkeXyX2bE9mdknguGf69i-Ly8yxgkik",
 								"type": "text"
 							}
 						],
@@ -210,15 +203,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/",
+							"raw": "http://localhost:3000/user",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								""
+								"user"
 							]
 						}
 					},
@@ -235,14 +227,8 @@
 								"value": "application/json"
 							},
 							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							},
-							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RVc2VyIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2MDYzOTk3OTJ9.AtiXbciF9N88EZnmm2OAMYDJntu-aujB-htZbzGWyJY",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDA5NjE1fQ.Kt7b5XjrctYhfYqh53WeAhU7Dznv9rq-tZtyzKwNzkc",
 								"type": "text"
 							}
 						],
@@ -251,14 +237,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/logout",
+							"raw": "http://localhost:3000/user/logout",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
+								"user",
 								"logout"
 							]
 						}
@@ -286,24 +272,24 @@
 									},
 									{
 										"key": "Authorization",
-										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3MjA5fQ.WhLh7iGqDpYp51LE98cwQiUsZV5VLM_lQRqM0JOHTf0",
-										"type": "text"
+										"type": "text",
+										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmJmZjU1YjE3NzhkNjYxYjE0NTI4NmMiLCJpYXQiOjE2MDcyNTM0NDF9.4FtnuEk2PEbNYBvGQsx4UK7jqbAYWL9VYH4OYekf224"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"id\":\"123456sdfsdf432\"}"
+									"raw": "{\n    \"chatId\":\"5fcb4c6615a1db0bd2abcec1\",\n    \"chatMessage\":\"hallo\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:3000/users/favorite",
+									"raw": "http://localhost:3000/chat/message",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"users",
-										"favorite"
+										"chat",
+										"message"
 									]
 								}
 							},
@@ -424,7 +410,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3MjA5fQ.WhLh7iGqDpYp51LE98cwQiUsZV5VLM_lQRqM0JOHTf0",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3NjQxfQ.T6-sO0kQFrZWMIHuF6wjawiI4vKsJSDmP8lU2I5k2Rk",
 								"type": "text"
 							}
 						],
@@ -433,14 +419,13 @@
 							"raw": "{\"id\":\"123456sdfsdf432\"}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/favorite",
+							"raw": "http://localhost:3000/favorite",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
 								"favorite"
 							]
 						}
@@ -468,14 +453,13 @@
 							"raw": "{\"id\":\"123456sdfsdf432\"}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/favorite",
+							"raw": "http://localhost:3000/favorite",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
 								"favorite"
 							]
 						}
@@ -498,7 +482,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3NjQxfQ.T6-sO0kQFrZWMIHuF6wjawiI4vKsJSDmP8lU2I5k2Rk"
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmJmZjU1YjE3NzhkNjYxYjE0NTI4NmMiLCJpYXQiOjE2MDcxMDI5MTZ9.7yvq6K0Gbn5SYkeXyX2bE9mdknguGf69i-Ly8yxgkik"
 							}
 						],
 						"body": {
@@ -506,14 +490,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/favorite",
+							"raw": "http://localhost:3000/favorite",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
 								"favorite"
 							]
 						}
