@@ -660,7 +660,7 @@ paths:
                           -
                             _senderId: "eyJhbGciasdasdasdad"
                             _message: "hallo Welt"
-                            _chatId: "kghjfghmo43u9jogfmb9"
+                            _chatId: "5fcb4c6615a1db0bd2abcec1"
         401:
           description: Authorization failed
           content:
@@ -696,7 +696,6 @@ paths:
               properties:
                 subscriber:
                   type: string
-                  properties:
               example:
                 subscriber: "5fc3f54613865788857713e6"
       responses:
@@ -767,6 +766,81 @@ paths:
                 example:
                   errorDescription: database failed to create ressource
       tags: [ ]
+  /chat/message:
+    post:
+      summary: Add message to chat
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chatId:
+                  type: string
+                message:
+                  type: string
+              example:
+                chatId: "5fcb4c6615a1db0bd2abcec1"
+                chatMessage: "Hallo Welt"
+      responses:
+        200:
+          description: Successfull added message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+        400:
+          description: Please add a valid body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: You body was not correct
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        403:
+          description: you don't have permissions for that
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: You are not permit to use that ressource
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        tags: [ ]
 tags: []
 info:
   title: Sneakerverse api-documentation
