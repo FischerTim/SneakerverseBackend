@@ -1,5 +1,5 @@
-let offerDatabase = require("../database/interface/offerDatabase");
-let resources = require("../resource/constant");
+const offerDatabase = require("../database/interface/offerDatabase");
+const resources = require("../resource/constant");
 
 const statusCode = resources.statusCode
 const responseMsg = resources.responseMsg
@@ -32,8 +32,9 @@ class offerService {
         req.data.offerlist = offers;
         return;
     }
-    async offerWithIdExits(id){
-        return await offerDatabase.offerWithId(id)?true:false
+
+    async offerWithIdExits(id) {
+        return await offerDatabase.offerWithId(id) ? true : false
     }
 
 
@@ -47,10 +48,8 @@ class offerService {
         if (!req.body.offer) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
-
-        const requestOffer = req.body.offer;
-
-        const newOffer = await offerDatabase.addOffer(requestOffer.name, requestOffer.description, requestOffer.price, requestOffer.size, requestOffer.brand, requestOffer.condition, req.user.username);
+        req.offer = req.body.offer
+        const newOffer = await offerDatabase.addOffer(req.offer.name, req.offer.description, req.offer.price, req.offer.size, req.offer.brand, req.offer.condition, req.user.username);
 
         if (!newOffer) {
             return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_CREATION_FAILED);

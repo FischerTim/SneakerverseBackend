@@ -1,26 +1,26 @@
-let express = require("express");
-let router = express.Router();
-let offerservice = require("../service/offerService")();
-let requestService = require("../service/requestService")();
+const express = require("express");
+const router = express.Router();
+const offerService = require("../service/offerService")();
+const requestService = require("../service/requestService")();
 const userService = require("../service/userService")();
 
 router.get("/", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [
         userService.authorizedRequest,
-        offerservice.offerList
+        offerService.offerList
     ])
 });
 
 router.post("/", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [
         userService.authorizedRequest,
-        offerservice.addOffer
+        offerService.addOffer
     ])
 });
 router.delete("/", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [
         userService.authorizedRequest,
-        offerservice.deleteOffer
+        offerService.deleteOffer
     ])
 });
 

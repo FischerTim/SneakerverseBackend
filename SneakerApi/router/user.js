@@ -1,8 +1,7 @@
-let express = require("express");
-let router = express.Router();
-let userService = require("../service/userService")();
-let requestService = require("../service/requestService")();
-let chatService = require("../service/chatService")();
+const express = require("express");
+const router = express.Router();
+const userService = require("../service/userService")();
+const requestService = require("../service/requestService")();
 
 router.get("/", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [
@@ -28,7 +27,6 @@ router.post("/register", async function (req, res) {
         userService.registration
     ])
 });
-
 
 
 module.exports = router;

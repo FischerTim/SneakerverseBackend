@@ -1,8 +1,8 @@
-let express = require("express");
-let router = express.Router();
-let userService = require("../service/userService")();
-let requestService = require("../service/requestService")();
-let chatService = require("../service/chatService")();
+const express = require("express");
+const router = express.Router();
+const userService = require("../service/userService")();
+const requestService = require("../service/requestService")();
+const chatService = require("../service/chatService")();
 
 router.post("/", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [
@@ -17,5 +17,13 @@ router.get("/", async function (req, res) {
         chatService.chatListOfUser
     ])
 });
+
+router.post("/message", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req, res, [
+        userService.authorizedRequest,
+        chatService.addMessage
+    ])
+});
+
 
 module.exports = router;

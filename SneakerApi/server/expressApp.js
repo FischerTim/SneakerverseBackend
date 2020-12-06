@@ -1,12 +1,12 @@
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let resource = require('../resource/constant')
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const resource = require('../resource/constant')
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 
-let expressApp = express();
+const expressApp = express();
 
 expressApp.use(logger('dev'));
 expressApp.use(express.json());
@@ -21,7 +21,7 @@ expressApp.set('port', resource.server.port);
 
 function start() {
     const swaggerDocument = YAML.load('./documentation/openApi3.0.yaml');
-    let baseRouter = require('../router/base');
+    const baseRouter = require('../router/base');
 
     expressApp.use(resource.paths.base, baseRouter);
     expressApp.use(resource.paths.docu, swaggerUi.serve, swaggerUi.setup(swaggerDocument));

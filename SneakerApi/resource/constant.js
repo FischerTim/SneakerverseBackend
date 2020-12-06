@@ -15,6 +15,7 @@ const _connections = {
     sessionCollection: "session",
     offerCollection: "offer",
     chatCollection: "chat",
+    chatMessageCollection: "chatmessage",
     constInConnectionUrl: {
         USERNAME: "<USERNAME>",
         PASSWORD: "<PASSWORD>",
@@ -52,12 +53,18 @@ const _paths = {
     offer: "/offer",
     user: "/user",
     docu: "/docu",
-    favorite : "/favorite",
+    favorite: "/favorite",
     chat: "/chat",
     base: "/"
 }
 const _server = {
     port: 3000
+}
+const _chat = {
+    joinEvent: "join",
+    leaveEvent: "exit",
+    updatePrefix: "update",
+    connectionEvent: "connection"
 }
 module.exports = {
     credentials: _credentials,
@@ -65,5 +72,6 @@ module.exports = {
     responseMsg: _responseMsg,
     statusCode: _statusCode,
     paths: _paths,
-    server: _server
+    server: _server,
+    chat: _chat
 };

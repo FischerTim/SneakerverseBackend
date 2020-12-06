@@ -5,7 +5,7 @@ const resource = require('./resource/constant');
 const expressApp = require('./server/expressApp');
 const httpServer = require('./server/httpServer')(expressApp.app);
 
-const socketIo = require('./service/webSocketService')(httpServer);
+require('./service/webSocketService')(httpServer);
 
 expressApp.start()
 

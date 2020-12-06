@@ -136,12 +136,13 @@ class userService {
         if (!req.body.id) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
+        req.id =req.body.id
 
-        if (!await offerService.offerWithIdExits(req.body.id)) {
+        if (!await offerService.offerWithIdExits(req.id )) {
             return requestService.createFailResponse(res, req, statusCode.NOT_FOUND, responseMsg.OFFER_NOT_FOUND);
         }
 
-        await userDatabase.addFavoriteId(req.user.username, req.body.id)
+        await userDatabase.addFavoriteId(req.user.username, req.id )
     }
 
     async removeFavoriteId(req, res) {
@@ -152,8 +153,9 @@ class userService {
         if (!req.body.id) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
+        req.id =req.body.id
 
-        await userDatabase.removeFavoriteId(req.user.username, req.body.id)
+        await userDatabase.removeFavoriteId(req.user.username, req.id)
     }
 
     async getFavoritesId(req, res) {

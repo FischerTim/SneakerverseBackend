@@ -82,7 +82,8 @@ async function _addChatId(username, id) {
     user._chats.push(id)
     return userModel.updateOne({_username: username}, {_chats: user._chats})
 }
-async function _getChats(id){
+
+async function _getChats(id) {
     const user = await userModel.findById(id)
     return user._chats
 }
@@ -100,5 +101,5 @@ module.exports = {
     addChatId: _addChatId,
     getUserWithId: _getUserWithId,
     idExist: _idExist,
-    getChats:_getChats
+    getChats: _getChats
 };

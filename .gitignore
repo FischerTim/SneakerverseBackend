@@ -96,7 +96,7 @@ SneakerApi/.DS_Store
 
 .idea
 #Node Packages
-SneakerApi/node_modules/
+node_modules/
 
 #redis-server db
 SneakerApi/dump.rdb
