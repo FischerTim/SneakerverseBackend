@@ -272,6 +272,48 @@
 			"name": "chat",
 			"item": [
 				{
+					"name": "Messages",
+					"item": [
+						{
+							"name": "add message to chat",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3MjA5fQ.WhLh7iGqDpYp51LE98cwQiUsZV5VLM_lQRqM0JOHTf0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id\":\"123456sdfsdf432\"}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "add chat",
 					"request": {
 						"method": "POST",
@@ -283,24 +325,23 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3MjA5fQ.WhLh7iGqDpYp51LE98cwQiUsZV5VLM_lQRqM0JOHTf0",
-								"type": "text"
+								"type": "text",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmJmZjU1YjE3NzhkNjYxYjE0NTI4NmMiLCJpYXQiOjE2MDcxMDI5MTZ9.7yvq6K0Gbn5SYkeXyX2bE9mdknguGf69i-Ly8yxgkik"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"123456sdfsdf432\"}"
+							"raw": "{\"subscriber\":\"5fc3f54613865788857713e6\"}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/favorite",
+							"raw": "http://localhost:3000/chat",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								"favorite"
+								"chat"
 							]
 						}
 					},
@@ -322,7 +363,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjA2NDE3NjQxfQ.T6-sO0kQFrZWMIHuF6wjawiI4vKsJSDmP8lU2I5k2Rk"
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmJmZjU1YjE3NzhkNjYxYjE0NTI4NmMiLCJpYXQiOjE2MDcxMDI5MTZ9.7yvq6K0Gbn5SYkeXyX2bE9mdknguGf69i-Ly8yxgkik"
 							}
 						],
 						"body": {
@@ -330,15 +371,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/favorite",
+							"raw": "http://localhost:3000/chat",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								"favorite"
+								"chat"
 							]
 						}
 					},
