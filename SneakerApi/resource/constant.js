@@ -16,6 +16,7 @@ const _connections = {
     offerCollection: "offer",
     chatCollection: "chat",
     chatMessageCollection: "chatmessage",
+    addressCollection: "address",
     constInConnectionUrl: {
         USERNAME: "<USERNAME>",
         PASSWORD: "<PASSWORD>",

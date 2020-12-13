@@ -17,7 +17,7 @@ function get() {
 }
 
 class userService {
-    async registration(req, res) {
+    registration = async (req, res) => {
         const requestService = req.requestService;
         if (!req.body.user) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
@@ -34,7 +34,7 @@ class userService {
 
     }
 
-    async login(req, res) {
+    login = async (req, res) => {
         const requestService = req.requestService;
         if (!req.body.user) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
@@ -66,7 +66,7 @@ class userService {
         return;
     }
 
-    async logout(req, res) {
+    logout = async (req, res) => {
         const requestService = req.requestService;
         if (!req.user) {
             return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
@@ -136,13 +136,13 @@ class userService {
         if (!req.body.id) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
-        req.id =req.body.id
+        req.id = req.body.id
 
-        if (!await offerService.offerWithIdExits(req.id )) {
+        if (!await offerService.offerWithIdExits(req.id)) {
             return requestService.createFailResponse(res, req, statusCode.NOT_FOUND, responseMsg.OFFER_NOT_FOUND);
         }
 
-        await userDatabase.addFavoriteId(req.user.username, req.id )
+        await userDatabase.addFavoriteId(req.user.username, req.id)
     }
 
     async removeFavoriteId(req, res) {
@@ -153,7 +153,7 @@ class userService {
         if (!req.body.id) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
-        req.id =req.body.id
+        req.id = req.body.id
 
         await userDatabase.removeFavoriteId(req.user.username, req.id)
     }

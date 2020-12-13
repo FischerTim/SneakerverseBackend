@@ -10,7 +10,7 @@ paths:
     get:
       summary: Check if head Authorization works
       security:
-        - bearerAuth: []
+        - bearerAuth: [ ]
       responses:
         200:
           description: Successfull checked header
@@ -45,7 +45,7 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
-      tags: []
+      tags: [ ]
   /user/login:
     post:
       summary: Login for users
@@ -62,14 +62,14 @@ paths:
                       type: string
                     password:
                       type: string
-              example:  
+              example:
                 user:
                   username: Tim119
                   password: sicheresPassword
       responses:
-        200:  
+        200:
           description: Successfull loged in
-          content: 
+          content:
             application/json:
               schema:
                 type: object
@@ -102,7 +102,7 @@ paths:
                   errorDescription: No user with this username found
         401:
           description: Authorization failed
-          content: 
+          content:
             application/json:
               schema:
                 type: object
@@ -111,7 +111,7 @@ paths:
                     type: string
                 example:
                   errorDescription: Authorization failed
-      tags: []
+      tags: [ ]
   /user/logout:
     post:
       summary: Logout for users
@@ -158,14 +158,14 @@ paths:
                       type: string
                     password:
                       type: string
-              example:  
+              example:
                 user:
                   username: Tim119
                   password: sicheresPassword1
       responses:
-        200:  
+        200:
           description: Successfull registered and loged in
-          content: 
+          content:
             application/json:
               schema:
                 type: object
@@ -176,7 +176,7 @@ paths:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
         400:
           description: Please add a valid body
-          content: 
+          content:
             application/json:
               schema:
                 type: object
@@ -196,7 +196,7 @@ paths:
                     type: string
                 example:
                   errorDescription: This username is already used
-      tags: []
+      tags: [ ]
   /favorite:
     get:
       summary: show favorite
@@ -223,7 +223,7 @@ paths:
                 example:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                   data:
-                    favorites: ["5fbf7bebcbf1374sdfsd1233fa6ded41","123123123343tre34256049875023zuvntc3t4"]
+                    favorites: [ "5fbf7bebcbf1374sdfsd1233fa6ded41","123123123343tre34256049875023zuvntc3t4" ]
 
         401:
           description: Authorization failed
@@ -409,20 +409,40 @@ paths:
                               type: string
                             _id:
                               type: string
+                            _pickUpAdress:
+                              type: object
+                              properties:
+                                _id:
+                                  tpye: string
+                                _streetName:
+                                  type: string
+                                _homeNumber:
+                                  type: string
+                                _postCode:
+                                  type: string
+                                _cityName:
+                                  type: string
+
                 example:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                   data:
                     offerlist:
-                      -
-                        _id: 5fbf7bebcbf13743fa6ded41,
-                        _name: Testoffer1,
-                        _description: New Offer,
-                        _price: 9.1,
-                        _size: 7,
-                        _brand: Nike,
-                        _condition: New,
-                        _ownerName: TestUser,
-                        _created: 2020-11-26T09:56:59.929Z,
+                      - _id: 5fbf7bebcbf13743fa6ded41
+                        _name: Testoffer1
+                        _description: New Offer
+                        _price: 9.1
+                        _size: 7
+                        _brand: Nike
+                        _condition: New
+                        _ownerName: TestUser
+                        _created: 2020-11-26T09:56:59.929Z
+                        _pickUpAddress:
+                          _id: 5fd62b19fbefa6181053a9f1
+                          _streetName: Wiesbaden
+                          _homeNumber: 1
+                          _postCode: 65185
+                          _cityName: Wiesbaden
+
         401:
           description: Authorization failed
           content:
@@ -471,6 +491,18 @@ paths:
                       type: double
                     condition:
                       type: string
+                      address:
+                        type: object
+                        properties:
+                          streetName:
+                            type: string
+                          homeNumber:
+                            type: string
+                          postCode:
+                            type: string
+                          cityName:
+                            type: string
+
               example:
                 offer:
                   name: gread Sneaker
@@ -479,6 +511,11 @@ paths:
                   brand: Nike
                   price: 125
                   condition: New
+                  adress:
+                    streetName: NiceStreet
+                    homeNumber: 9
+                    postCode: 65185
+                    cityName: Wiesbaden
       responses:
         200:
           description: Successfull added a new offer
@@ -651,14 +688,12 @@ paths:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                   data:
                     chatList:
-                      -
-                        _subcriber:
+                      - _subcriber:
                           - "eyJhbGciasdasdasdadasdasd143"
                           - "eyJhbGciasdaasdasdsdasdadasd"
                         _id: 5fbf7bebcbf13743fa6ded41,
                         _messages:
-                          -
-                            _senderId: "eyJhbGciasdasdasdad"
+                          - _senderId: "eyJhbGciasdasdasdad"
                             _message: "hallo Welt"
                             _chatId: "5fcb4c6615a1db0bd2abcec1"
         401:
@@ -841,7 +876,7 @@ paths:
                 example:
                   errorDescription: No user with this username found
         tags: [ ]
-tags: []
+tags: [ ]
 info:
   title: Sneakerverse api-documentation
   version: 0.0.0

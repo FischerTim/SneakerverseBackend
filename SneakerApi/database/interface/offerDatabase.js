@@ -1,14 +1,15 @@
 const mongoose = require("./database");
-const ressources = require("../../resource/constant");
+const resources = require("../../resource/constant");
 const offerSchema = require("../schema/offerSchema");
-
-const ressourcesConnection = ressources.connections;
-
+const addressDatabase = require("./addressDatabase");
+const resourcesConnection = resources.connections;
+const userDatabase = require("./userDatabase");
+const Validation = require('../../Util/Util').Validation
 let offerModel;
 
 async function connect() {
     offerModel = await mongoose.model(
-        ressourcesConnection.offerCollection,
+        resourcesConnection.offerCollection,
         offerSchema
     );
 }
@@ -28,21 +29,50 @@ async function _offerWithId(id) {
 }
 
 async function _deleteOfferWithId(id) {
+    const offer = await _offerWithId(id)
+    if (Validation.isObject(offer._pickUpAddress)) {
+        await addressDatabase.deleteAddress(offer._pickUpAddress._id)
+    }
     return offerModel.deleteOne({_id: id});
 }
 
 
-async function _addOffer(name, description, price, size, brand, condition, ownerName) {
+async function _addOffer(name, description, price, size, brand, condition, ownerName, address) {
+    const offerObject = {
+        _name: name,
+        _description: description,
+        _price: price,
+        _size: size,
+        _brand: brand,
+        _condition: condition,
+        _ownerName: ownerName,
+        _address: {}
+    }
     try {
-        return await offerModel.create({
-            _name: name,
-            _description: description,
-            _price: price,
-            _size: size,
-            _brand: brand,
-            _condition: condition,
-            _ownerName: ownerName
-        });
+
+        const user = await userDatabase.getUserWithUsername(ownerName);
+
+        if (Validation.isEmptyObject(user._address)) {
+            offerObject._address = user._address;
+        }
+
+        if (!address && !Validation.isEmptyObject(offerObject._address)) {
+            return null
+        }
+
+        offerObject._address = Validation.isEmptyObject(offerObject._address) ? offerObject._address : {}
+
+        offerObject._address._homeNumber = address.homeNumber;
+        offerObject._address._cityName = address.cityName;
+        offerObject._address._postCode = address.postCode;
+        offerObject._address._streetName = address.cityName;
+
+        if (offerObject._address._cityName && offerObject._address._streetName && offerObject._address._homeNumber && offerObject._address._postCode) {
+
+            const newAddress = await addressDatabase.createAddress(offerObject._address._cityName, offerObject._address._homeNumber, offerObject._address._postCode, offerObject._address._streetName);
+            offerObject._pickUpAddress = newAddress;
+        }
+        return await offerModel.create(offerObject);
     } catch (e) {
         return null
     }
