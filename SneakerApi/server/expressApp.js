@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const resource = require('../resource/constant')
@@ -8,6 +9,7 @@ const YAML = require('yamljs');
 
 const expressApp = express();
 
+expressApp.use(cors())
 expressApp.use(logger('dev'));
 expressApp.use(express.json());
 expressApp.use(express.urlencoded({extended: false}));
