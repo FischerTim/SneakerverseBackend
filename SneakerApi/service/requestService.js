@@ -29,15 +29,19 @@ class requestService {
 
     async runEachFunctionAsPipeline(req, res, functions) {
 
-        for (let index = 0; index < functions.length; ++index) {
-            const job = functions[index]
-            await job(req, res)
+        try {
+            for (let index = 0; index < functions.length; ++index) {
+                const job = functions[index]
+                await job(req, res)
 
-            if (this.requestFailed(res)) {
-                return this._sendError(req, res);
+                if (this.requestFailed(res)) {
+                    return this._sendError(req, res);
+                }
             }
+            this._sendData(req, res);
+        } catch (e) {
+            this.createFailResponse(res, req, resources.statusCode.UNKNOWN, resources.responseMsg.BASE)
         }
-        this._sendData(req, res);
     }
 
     _sendData(req, res) {

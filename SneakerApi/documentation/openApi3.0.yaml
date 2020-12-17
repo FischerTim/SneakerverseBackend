@@ -45,6 +45,17 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
   /user/login:
     post:
@@ -111,6 +122,17 @@ paths:
                     type: string
                 example:
                   errorDescription: Authorization failed
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
   /user/logout:
     post:
@@ -142,6 +164,17 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
   /user/register:
     post:
       summary: Registation for new users
@@ -196,6 +229,17 @@ paths:
                     type: string
                 example:
                   errorDescription: This username is already used
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
   /favorite:
     get:
@@ -247,6 +291,17 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
     post:
       summary: add favorite
@@ -307,6 +362,17 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
     delete:
       summary: remove favorite
@@ -367,6 +433,17 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
   /offer:
     get:
@@ -465,6 +542,18 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
+
       tags: [ ]
     post:
       summary: Create a new offer
@@ -643,6 +732,17 @@ paths:
                     type: string
                 example:
                   errorDescription: Can't find ressource
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
   /chat:
     get:
@@ -718,6 +818,17 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
     post:
       summary: start a chat with someone
@@ -875,6 +986,17 @@ paths:
                     type: string
                 example:
                   errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
         tags: [ ]
 tags: [ ]
 info:
