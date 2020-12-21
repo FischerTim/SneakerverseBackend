@@ -1,5 +1,6 @@
 const chatDatabase = require("../database/interface/chatDatabase");
 const chatMessageDatabase = require("../database/interface/chatMessageDatabase");
+const userDatabase = require("../database/interface/userDatabase");
 const resources = require("../resource/constant");
 
 
@@ -62,9 +63,18 @@ class chatService {
         }
         const chatIds = await userService.getChatList(req.user.id)
         const list = []
+        console.log("1")
         for (let id in await chatIds) {
-            list.push(await chatDatabase.chat(chatIds[id]));
+            const chat = await chatDatabase.chat(chatIds[id])
+            let subscriberAsName = []
+            const sup = (await chat)._subscriber
+            for (let userId in await sup) {
+                subscriberAsName.push(await userDatabase.getUsername(chat._subscriber[userId]))
+            }
+            chat._subscriber = subscriberAsName
+            list.push(chat);
         }
+
         req.data.chatList = list.reverse()
     }
 

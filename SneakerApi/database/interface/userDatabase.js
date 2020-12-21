@@ -98,10 +98,16 @@ async function getRating(id) {
     return user._ratings
 }
 
+async function getUsername(id) {
+    const user = await userModel.findById(id)
+    return user._username
+}
+
 
 module.exports = {
     addRatingId,
     getRating,
+    getUsername,
     getUserWithUsername,
     getUsers,
     registerUser,
