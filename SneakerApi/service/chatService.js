@@ -63,7 +63,6 @@ class chatService {
         }
         const chatIds = await userService.getChatList(req.user.id)
         const list = []
-        console.log("1")
         for (let id in await chatIds) {
             const chat = await chatDatabase.chat(chatIds[id])
             let subscriberAsName = []
