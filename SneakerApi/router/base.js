@@ -31,5 +31,11 @@ router.use(resource.favorite, favoriteRouter)
 const chatRouter = require('./chat')
 router.use(resource.chat, chatRouter)
 
+const profileRouter = require('./profile')
+router.use(resource.profile, profileRouter)
+
+const ratingRouter = require('./rating')
+router.use(resource.rating, ratingRouter)
+
 
 module.exports = router

@@ -15,19 +15,19 @@ async function connect() {
 
 connect();
 
-async function _getUsers() {
+async function getUsers() {
     return await userModel.find();
 }
 
-async function _getUserWithUsername(username) {
+async function getUserWithUsername(username) {
     return userModel.findOne({_username: username});
 }
 
-async function _getUserWithId(id) {
+async function getUserWithId(id) {
     return userModel.findById(id);
 }
 
-async function _idExist(id) {
+async function idExist(id) {
     try {
         if (await userModel.findById(id)) {
             return true
@@ -40,66 +40,79 @@ async function _idExist(id) {
 
 }
 
-async function _registerUser(username, password) {
+async function registerUser(username, password) {
     return await userModel.create({_username: username, _password: password});
 }
 
-async function _updateUserToken(username, token) {
+async function updateUserToken(username, token) {
     return userModel.updateOne({_username: username}, {_sessionToken: token})
 }
 
-async function _addOfferId(username, id) {
+async function addOfferId(username, id) {
     let user = await userModel.findOne({_username: username});
     user._offers.push(id)
     return userModel.updateOne({_username: username}, {_offers: user._offers})
 }
 
-async function _removeOfferId(username, id) {
+async function removeOfferId(username, id) {
     let user = await userModel.findOne({_username: username});
     let offerWithoutId = user._offers.filter(_id => _id != id)
     return userModel.updateOne({_username: username}, {_offers: offerWithoutId})
 }
 
-async function _addFavoriteId(username, id) {
+async function addFavoriteId(username, id) {
     let user = await userModel.findOne({_username: username});
     user._favorites.push(id)
     return userModel.updateOne({_username: username}, {_favorites: user._favorites})
 }
 
-async function _removeFavoriteId(username, id) {
+async function removeFavoriteId(username, id) {
     let user = await userModel.findOne({_username: username});
     let favoritesWithoutId = user._favorites.filter(_id => _id != id)
     return userModel.updateOne({_username: username}, {_favorites: favoritesWithoutId})
 }
 
-async function _getFavoriteId(username) {
+async function getFavoriteId(username) {
     let user = await userModel.findOne({_username: username});
     return user._favorites
 }
 
-async function _addChatId(username, id) {
+async function addChatId(username, id) {
     let user = await userModel.findOne({_username: username});
     user._chats.push(id)
     return userModel.updateOne({_username: username}, {_chats: user._chats})
 }
 
-async function _getChats(id) {
+async function getChats(id) {
     const user = await userModel.findById(id)
     return user._chats
 }
+async function addRatingId(username, id) {
+    let user = await userModel.findOne({_username: username});
+    user._ratings.push(id)
+    return userModel.updateOne({_username: username}, {_ratings: user._ratings})
+}
+
+async function getRating(id) {
+    const user = await userModel.findById(id)
+    return user._ratings
+}
+
 
 module.exports = {
-    getUserWithUsername: _getUserWithUsername,
-    getUsers: _getUsers,
-    registerUser: _registerUser,
-    getFavoriteId: _getFavoriteId,
-    updateUserToken: _updateUserToken,
-    addOfferId: _addOfferId,
-    removeOfferId: _removeOfferId,
-    addFavoriteId: _addFavoriteId,
-    removeFavoriteId: _removeFavoriteId,
-    addChatId: _addChatId,
-    getUserWithId: _getUserWithId,
-    idExist: _idExist,
-    getChats: _getChats
+    addRatingId,
+    getRating,
+    getUserWithUsername,
+    getUsers,
+    registerUser,
+    getFavoriteId,
+    updateUserToken,
+    addOfferId,
+    removeOfferId,
+    addFavoriteId,
+    removeFavoriteId,
+    addChatId,
+    getUserWithId,
+    idExist,
+    getChats
 };

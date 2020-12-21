@@ -17,6 +17,7 @@ const _connections = {
     chatCollection: "chat",
     chatMessageCollection: "chatmessage",
     addressCollection: "address",
+    ratingCollection: "rating",
     constInConnectionUrl: {
         USERNAME: "<USERNAME>",
         PASSWORD: "<PASSWORD>",
@@ -44,9 +45,9 @@ const _responseMsg = {
     USERNAME_USED: "This username is already used",
     USER_NOT_FOUND: "No user with this data found",
     AUTHORIZATION_FAILED: "Authorization failed",
-    DATABASE_CREATION_FAILED: "database failed to create ressource",
-    OFFER_NOT_FOUND: "Can't find ressource",
-    NO_PERMISSIONS: "You are not permit to use that ressource",
+    DATABASE_REQUEST_FAILED: "database failed accessing resource",
+    OFFER_NOT_FOUND: "Can't find resource",
+    NO_PERMISSIONS: "You are not permit to use that resource",
     DUPLICATE_SUBSCRIBERS_CHAT: "Users already chatted"
 };
 
@@ -56,7 +57,9 @@ const _paths = {
     docu: "/docu",
     favorite: "/favorite",
     chat: "/chat",
-    base: "/"
+    base: "/",
+    profile:"/profile",
+    rating:"/rating"
 }
 const _server = {
     port: 3000

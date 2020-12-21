@@ -267,7 +267,7 @@ paths:
                 example:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                   data:
-                    favorites: [ "5fbf7bebcbf1374sdfsd1233fa6ded41","123123123343tre34256049875023zuvntc3t4" ]
+                    favorites: [ 5fbf7bebcbf1374sdfsd1233fa6ded41,123123123343tre34256049875023zuvntc3t4 ]
 
         401:
           description: Authorization failed
@@ -580,17 +580,17 @@ paths:
                       type: double
                     condition:
                       type: string
-                      address:
-                        type: object
-                        properties:
-                          streetName:
-                            type: string
-                          homeNumber:
-                            type: string
-                          postCode:
-                            type: string
-                          cityName:
-                            type: string
+                    address:
+                      type: object
+                      properties:
+                        streetName:
+                          type: string
+                        homeNumber:
+                          type: string
+                        postCode:
+                          type: string
+                        cityName:
+                          type: string
 
               example:
                 offer:
@@ -789,13 +789,13 @@ paths:
                   data:
                     chatList:
                       - _subcriber:
-                          - "eyJhbGciasdasdasdadasdasd143"
-                          - "eyJhbGciasdaasdasdsdasdadasd"
+                          - eyJhbGciasdasdasdadasdasd143
+                          - eyJhbGciasdaasdasdsdasdadasd
                         _id: 5fbf7bebcbf13743fa6ded41,
                         _messages:
-                          - _senderId: "eyJhbGciasdasdasdad"
-                            _message: "hallo Welt"
-                            _chatId: "5fcb4c6615a1db0bd2abcec1"
+                          - _senderId: eyJhbGciasdasdasdad
+                            _message: hallo Welt
+                            _chatId: 5fcb4c6615a1db0bd2abcec1
         401:
           description: Authorization failed
           content:
@@ -843,7 +843,7 @@ paths:
                 subscriber:
                   type: string
               example:
-                subscriber: "5fc3f54613865788857713e6"
+                subscriber: 5fc3f54613865788857713e6
       responses:
         200:
           description: Successfull checked header
@@ -928,8 +928,8 @@ paths:
                 message:
                   type: string
               example:
-                chatId: "5fcb4c6615a1db0bd2abcec1"
-                chatMessage: "Hallo Welt"
+                chatId: 5fcb4c6615a1db0bd2abcec1
+                chatMessage: Hallo Welt
       responses:
         200:
           description: Successfull added message
@@ -998,6 +998,339 @@ paths:
                 example:
                   errorDescription: Something went wrong. Please try it again
         tags: [ ]
+  /profile:
+    get:
+      summary: get profile information about user
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+              example:
+                username: Tim119
+      responses:
+        200:
+          description: Successfull checked header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      userProfile:
+                        tpye: object
+                        properties:
+                          _username:
+                            type: string
+                          _password:
+                            type: string
+                          _role:
+                            type: string
+                          _sessionToken:
+                            type: string
+                          _offers:
+                            type: array
+                              items:
+                                type: string
+                          _favorites:
+                            type: array
+                              items:
+                                type: string
+                          _registered:
+                            type: Date
+                          _chats:
+                            type: array
+                              items:
+                                type: string
+                          _address:
+                            type: object
+                            properties:
+                              _streetName:
+                                type: string
+                              _homeNumber:
+                                type: string
+                              _postCode:
+                                type: string
+                              _cityName:
+                                type: string
+                          _ratings:
+                            type: array
+                              items:
+                                type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    userProfile:
+                      _role: User
+                      _offers:
+                          - eyJhbGciasdasdasdadasdasd143
+                          - eyJhbGciasdaasdasdsdasdadasd
+                      _favorites:
+                          - eyJhbGciasdasdasdadasdasd143
+                          - eyJhbGciasdaasdasdsdasdadasd
+                      _chats:
+                          - eyJhbGciasdasdasdadasdasd143
+                          - eyJhbGciasdaasdasdsdasdadasd
+                      _ratings:
+                          - 5fdf48500e48d2c65b6ac1d4
+                      _id: 5fd64098eecfaf1a376d6cb7
+                      _username: Tim119
+                      _password: TestPassword
+                      __v: 0
+                      _sessionToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MDg0Njc5NDd9.CE-e8E5Mbtp03poc9DhG_7ImsnGAdPGYBx9rC-h3Dak
+                      _registered: 2020-12-20T12:49:28.682Z
+
+
+
+        400:
+          description: invalid body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: You body was not correct
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
+      tags: [ ]
+  /rating:
+    get:
+      summary: get rating with id
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ratingId:
+                  type: string
+              example:
+                ratingId: 5fdf48500e48d2c65b6ac1d4
+      responses:
+        200:
+          description: Successfull
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      rating:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                          _targetUsername:
+                            type: string
+                          _rating:
+                            type: integer
+                          _evaluatorName:
+                            type: string
+                          _created:
+                            type: date
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    rating:
+                      _id: 5fdf48500e48d2c65b6ac1d4
+                      _targetUsername: Tim119
+                      _rating: 1
+                      _evaluatorName: Tim119
+                      _created: 2020-12-20T12:49:20.548Z
+        400:
+          description: invalid body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: You body was not correct
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
+    post:
+      summary: Check if head Authorization works
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: object
+                  properties:
+                    targetUsername:
+                      tpye: string
+                    rating:
+                      type: integer
+              example:
+                rating:
+                  targetUsername: Tim110
+                  rating: 2
+      responses:
+        200:
+          description: Successfull
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      rating:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                          _targetUsername:
+                            type: string
+                          _rating:
+                            type: integer
+                          _evaluatorName:
+                            type: string
+                          _created:
+                            type: date
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    rating:
+                      _id: 5fdf48500e48d2c65b6ac1d4
+                      _targetUsername: Tim119
+                      _rating: 1
+                      _evaluatorName: Tim119
+                      _created: 2020-12-20T12:49:20.548Z
+        400:
+          description: invalid body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: You body was not correct
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
+      tags: [ ]
 tags: [ ]
 info:
   title: Sneakerverse api-documentation

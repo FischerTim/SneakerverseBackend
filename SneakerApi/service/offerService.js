@@ -52,7 +52,7 @@ class offerService {
         const newOffer = await offerDatabase.addOffer(req.offer.name, req.offer.description, req.offer.price, req.offer.size, req.offer.brand, req.offer.condition, req.user.username, req.offer.address);
 
         if (!newOffer) {
-            return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_CREATION_FAILED);
+            return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
         }
         await userService.addOfferId(req.user.username, newOffer._id)
 

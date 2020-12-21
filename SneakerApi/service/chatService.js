@@ -46,7 +46,7 @@ class chatService {
         const newChat = await chatDatabase.createChat(req.user.id, req.subscriber)
 
         if (!newChat) {
-            return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_CREATION_FAILED);
+            return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
         }
 
         await userService.addChatId(req.user.username, newChat._id)

@@ -7,6 +7,8 @@ module.exports = new mongoose.Schema({
     _sessionToken: {type: String},
     _offers: {type: []},
     _favorites: {type: []},
+    _registered: {type: Date, default: Date.now, required: true},
     _chats: {type: []},
-    _address: {type: address}
+    _address: {type: address},
+    _ratings: {type:[]}
 });

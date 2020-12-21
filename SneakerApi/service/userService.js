@@ -108,6 +108,27 @@ class userService {
         return;
     }
 
+    async getProfile(req, res) {
+        const requestService = req.requestService;
+
+        if (!req.user) {
+            return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+        }
+
+        if (!req.body.username) {
+            return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
+        }
+        req.username = req.body.username
+
+        try {
+            const userProfile = await userDatabase.getUserWithUsername(req.username)
+            req.data.userProfile = userProfile
+            return
+        } catch (e) {
+            return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
+        }
+    }
+
     async addOfferId(username, id) {
         await userDatabase.addOfferId(username, id)
     }
