@@ -486,19 +486,18 @@ paths:
                               type: string
                             _id:
                               type: string
-                            _pickUpAdress:
+                            _city:
                               type: object
                               properties:
-                                _id:
-                                  tpye: string
-                                _streetName:
-                                  type: string
-                                _homeNumber:
-                                  type: string
-                                _postCode:
-                                  type: string
+                                _latitude:
+                                  type: double
+                                _longitude:
+                                  type: double
                                 _cityName:
                                   type: string
+                                _id:
+                                  tpye: string
+
 
                 example:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
@@ -513,11 +512,10 @@ paths:
                         _condition: New
                         _ownerName: TestUser
                         _created: 2020-11-26T09:56:59.929Z
-                        _pickUpAddress:
+                        _city:
                           _id: 5fd62b19fbefa6181053a9f1
-                          _streetName: Wiesbaden
-                          _homeNumber: 1
-                          _postCode: 65185
+                          _latitude: 8.2
+                          _longitude: 9.0
                           _cityName: Wiesbaden
 
         401:
@@ -580,15 +578,13 @@ paths:
                       type: double
                     condition:
                       type: string
-                    address:
+                    city:
                       type: object
                       properties:
-                        streetName:
-                          type: string
-                        homeNumber:
-                          type: string
-                        postCode:
-                          type: string
+                        latitude:
+                          type: double
+                        longitude:
+                          type: double
                         cityName:
                           type: string
 
@@ -600,10 +596,9 @@ paths:
                   brand: Nike
                   price: 125
                   condition: New
-                  adress:
-                    streetName: NiceStreet
-                    homeNumber: 9
-                    postCode: 65185
+                  city:
+                    latitude: 8.2
+                    longitude: 9.0
                     cityName: Wiesbaden
       responses:
         200:
@@ -1051,15 +1046,13 @@ paths:
                             type: array
                               items:
                                 type: string
-                          _address:
+                          _city:
                             type: object
                             properties:
-                              _streetName:
-                                type: string
-                              _homeNumber:
-                                type: string
-                              _postCode:
-                                type: string
+                              _latitude:
+                                type: double
+                              _longitude:
+                                type: double
                               _cityName:
                                 type: string
                           _ratings:

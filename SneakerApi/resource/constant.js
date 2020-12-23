@@ -16,7 +16,7 @@ const _connections = {
     offerCollection: "offer",
     chatCollection: "chat",
     chatMessageCollection: "chatmessage",
-    addressCollection: "address",
+    cityCollection: "city",
     ratingCollection: "rating",
     constInConnectionUrl: {
         USERNAME: "<USERNAME>",

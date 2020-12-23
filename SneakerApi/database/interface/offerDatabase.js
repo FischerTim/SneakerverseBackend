@@ -1,7 +1,7 @@
 const mongoose = require("./database");
 const resources = require("../../resource/constant");
 const offerSchema = require("../schema/offerSchema");
-const addressDatabase = require("./addressDatabase");
+const cityDatabase = require("./cityDatabase");
 const resourcesConnection = resources.connections;
 const userDatabase = require("./userDatabase");
 const Validation = require('../../Util/Util').Validation
@@ -30,14 +30,14 @@ async function _offerWithId(id) {
 
 async function _deleteOfferWithId(id) {
     const offer = await _offerWithId(id)
-    if (Validation.isObject(offer._pickUpAddress)) {
-        await addressDatabase.deleteAddress(offer._pickUpAddress._id)
+    if (Validation.isObject(offer._city)) {
+        await cityDatabase.deleteCity(offer._city._id)
     }
     return offerModel.deleteOne({_id: id});
 }
 
 
-async function _addOffer(name, description, price, size, brand, condition, ownerName, address) {
+async function _addOffer(name, description, price, size, brand, condition, ownerName, city) {
     const offerObject = {
         _name: name,
         _description: description,
@@ -46,34 +46,34 @@ async function _addOffer(name, description, price, size, brand, condition, owner
         _brand: brand,
         _condition: condition,
         _ownerName: ownerName,
-        _address: {}
+        _cityName: {}
     }
     try {
 
         const user = await userDatabase.getUserWithUsername(ownerName);
 
-        if (Validation.isEmptyObject(user._address)) {
-            offerObject._address = user._address;
+        if (!Validation.isEmptyObject(user._city)) {
+            offerObject._city = user._city;
         }
 
-        if (!address && !Validation.isEmptyObject(offerObject._address)) {
+        if (!city && !Validation.isEmptyObject(offerObject._city)) {
             return null
         }
 
-        offerObject._address = Validation.isEmptyObject(offerObject._address) ? offerObject._address : {}
+        offerObject._city = Validation.isEmptyObject(offerObject._city) ? offerObject._city : {}
 
-        offerObject._address._homeNumber = address.homeNumber;
-        offerObject._address._cityName = address.cityName;
-        offerObject._address._postCode = address.postCode;
-        offerObject._address._streetName = address.cityName;
+        offerObject._city._latitude = city.latitude;
+        offerObject._city._cityName = city.cityName;
+        offerObject._city._longitude = city.longitude;
 
-        if (offerObject._address._cityName && offerObject._address._streetName && offerObject._address._homeNumber && offerObject._address._postCode) {
 
-            const newAddress = await addressDatabase.createAddress(offerObject._address._cityName, offerObject._address._homeNumber, offerObject._address._postCode, offerObject._address._streetName);
-            offerObject._pickUpAddress = newAddress;
+        if (offerObject._city._cityName && offerObject._city._longitude && offerObject._city._latitude) {
+            const newCity = await cityDatabase.createCity(offerObject._city._latitude, offerObject._city._longitude, offerObject._city._cityName);
+            offerObject._city = newCity;
         }
         return await offerModel.create(offerObject);
     } catch (e) {
+        console.log(e)
         return null
     }
 }
