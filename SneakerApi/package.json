@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./index.js"
+    "dev": "MODE=dev nodemon ./index.js",
+    "debug": "MODE=debug nodemon ./index.js"
   },
   "dependencies": {
     "@mongoosejs/double": "^0.2.0",
@@ -22,7 +23,7 @@
     "morgan": "~1.9.1",
     "nodemon": "^2.0.6",
     "npx": "^10.2.2",
-    "socket.io": "^3.0.3",
+    "socket.io": "2.0.0",
     "swagger-ui-express": "^3.0.10",
     "yamljs": "^0.3.0"
   }

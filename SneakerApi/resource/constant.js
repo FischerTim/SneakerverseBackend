@@ -70,6 +70,11 @@ const _chat = {
     updatePrefix: "update",
     connectionEvent: "connection"
 }
+const _mods ={
+    dev: "dev",
+    debug: "debug",
+    default: "default"
+}
 module.exports = {
     credentials: _credentials,
     connections: _connections,
@@ -77,5 +82,6 @@ module.exports = {
     statusCode: _statusCode,
     paths: _paths,
     server: _server,
-    chat: _chat
+    chat: _chat,
+    mods:_mods
 };

@@ -1,4 +1,5 @@
 
 module.exports = {
-    Validation: require('./Validation')
+    Validation: require('./Validation'),
+    Logger: require('./Logger')(),
 }
