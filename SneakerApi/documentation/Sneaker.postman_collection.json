@@ -112,9 +112,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get selected offers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MTAwMTI0MzN9.ejy-NIohW9MBmDL40cGVUcoOht0K_4gpdjzBeazBvkY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\":[\"5fd78b53dae73cebf638306f\",\"5fd7dad3d50c4801ca1d303a\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/chat/selected",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								"selected"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "User",
@@ -251,8 +288,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "chat",
@@ -295,9 +331,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "add chat",
@@ -369,13 +403,50 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get selected chats of user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MTAwMTI0MzN9.ejy-NIohW9MBmDL40cGVUcoOht0K_4gpdjzBeazBvkY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\":[\"5fd78b53dae73cebf638306f\",\"5fd7dad3d50c4801ca1d303a\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/chat/selected",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								"selected"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "2f05833d-b219-4daa-af6e-08d5196f624c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -385,15 +456,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "40fa55a8-585f-4f72-bace-6c489ce77d7a",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Favorite",
@@ -503,8 +572,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "rating",
@@ -524,23 +592,23 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MDg0NjA5MDR9.sKTjd80fXTt2K7o9GQac1mTj0yN8XgPWIIWILvxRjAg",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MTAwMTQyMDl9.rpxA8KJYh5lZJ8uD86fxUKqLBQer2nMTTuisPXeobjg",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\":\"Tim119\"\n}"
+							"raw": "{\n    \"ids\":[\"5ff6e11ea30b2a94adaa0605\"]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/profile",
+							"raw": "http://localhost:3000/rating",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"profile"
+								"rating"
 							]
 						}
 					},
@@ -580,8 +648,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "profile",
@@ -623,9 +690,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

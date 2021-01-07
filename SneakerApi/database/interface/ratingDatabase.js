@@ -29,8 +29,11 @@ async function createRate(targetUsername, rating, evaluatorName) {
 async function getRatingWithId(id) {
     return await rateModel.findById(id)
 }
-
+async function ratingWithIdExist(id){
+    return rateModel.findById(id)?true:false
+}
 module.exports = {
     getRatingWithId,
-    createRate
+    createRate,
+    ratingWithIdExist
 };

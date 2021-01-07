@@ -48,7 +48,8 @@ const _responseMsg = {
     DATABASE_REQUEST_FAILED: "database failed accessing resource",
     OFFER_NOT_FOUND: "Can't find resource",
     NO_PERMISSIONS: "You are not permit to use that resource",
-    DUPLICATE_SUBSCRIBERS_CHAT: "Users already chatted"
+    DUPLICATE_SUBSCRIBERS_CHAT: "Users already chatted",
+    ID_NOT_FOUND: "Can't find resource",
 };
 
 const _paths = {

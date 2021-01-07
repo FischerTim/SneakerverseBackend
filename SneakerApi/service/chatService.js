@@ -2,7 +2,7 @@ const chatDatabase = require("../database/interface/chatDatabase");
 const chatMessageDatabase = require("../database/interface/chatMessageDatabase");
 const userDatabase = require("../database/interface/userDatabase");
 const resources = require("../resource/constant");
-
+const Logger = require('../Util/Util').Logger
 
 const statusCode = resources.statusCode
 const responseMsg = resources.responseMsg
@@ -75,6 +75,33 @@ class chatService {
         }
 
         req.data.chatList = list.reverse()
+    }
+
+    async chatsWithIds(req, res) {
+        const requestService = req.requestService;
+        if (!req.user) {
+            return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+        }
+        if (!req.body.ids) {
+            return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
+        }
+        const result = []
+        for (let id in req.body.ids) {
+            if(! await userDatabase.chatsOfUserContainsId(req.user.username, req.body.ids[id])){
+
+                return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.ID_NOT_FOUND);
+            }
+            const chat = await chatDatabase.chat(req.body.ids[id])
+            let subscriberAsName = []
+            const sup = (await chat)._subscriber
+            for (let userId in await sup) {
+                subscriberAsName.push(await userDatabase.getUsername(chat._subscriber[userId]))
+            }
+            chat._subscriber = subscriberAsName
+            result.push(chat);
+        }
+
+        req.data.chats = result
     }
 
     async addMessage(req, res) {

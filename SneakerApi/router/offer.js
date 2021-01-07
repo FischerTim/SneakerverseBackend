@@ -10,6 +10,12 @@ router.get("/", async function (req, res) {
         offerService.offerList
     ])
 });
+router.get("/selected", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req, res, [
+        userService.authorizedRequest,
+        offerService.offersWithIds
+    ])
+});
 
 router.post("/", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [

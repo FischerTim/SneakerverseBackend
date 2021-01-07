@@ -7,7 +7,7 @@ const userService = require("../service/userService")();
 router.get("/", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [
         userService.authorizedRequest,
-        ratingService.getRating
+        ratingService.getRatingsWithIds
     ])
 });
 

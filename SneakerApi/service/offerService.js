@@ -1,5 +1,6 @@
 const offerDatabase = require("../database/interface/offerDatabase");
 const resources = require("../resource/constant");
+const userDatabase = require("../database/interface/userDatabase");
 
 const statusCode = resources.statusCode
 const responseMsg = resources.responseMsg
@@ -37,6 +38,25 @@ class offerService {
         return await offerDatabase.offerWithId(id) ? true : false
     }
 
+    async offersWithIds(req, res) {
+        const requestService = req.requestService;
+        if (!req.user) {
+            return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+        }
+        if (!req.body.ids) {
+            return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
+        }
+        const result = []
+        for (let id in req.body.ids) {
+            if(! await offerDatabase.offerWithIdExist( req.body.ids[id])){
+                return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.ID_NOT_FOUND);
+            }
+            const offer = await offerDatabase.offerWithId(req.body.ids[id])
+            result.push(offer);
+        }
+
+        req.data.offers = result
+    }
 
     async addOffer(req, res) {
         const userService = req.userService;

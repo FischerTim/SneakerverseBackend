@@ -4,7 +4,7 @@ let userDatabase = require("../database/interface/userDatabase");
 let resources = require("../resource/constant");
 const statusCode = resources.statusCode
 const responseMsg = resources.responseMsg
-
+const Logger = require('../Util/Util').Logger
 let service = ""
 
 function get() {
@@ -79,11 +79,10 @@ class userService {
     async authorizedRequest(req, res) {
         const requestService = req.requestService;
         const authHeader = req.headers.authorization;
-
         if (!authHeader) {
+
             return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.MISSING_AUTHORIZATION_HEADER);
         }
-
         const token = authHeader.split(" ")[1];
         let user
 
@@ -92,19 +91,22 @@ class userService {
         } catch (e) {
             return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.INVALID_TOKEN);
         }
-
+        Logger.debug("Pre Database access in AuthorizedRequest(UserService)")
         let databaseUser = await userDatabase.getUserWithUsername(user.username);
-
+        Logger.debug("post Database access in AuthorizedRequest(UserService)")
         if (!databaseUser) {
             return requestService.createFailResponse(res, req, statusCode.NOT_FOUND, responseMsg.USER_NOT_FOUND);
         }
 
         databaseUser = await databaseUser.toObject();
         if (databaseUser._sessionToken != token) {
+            Logger.debug(databaseUser._sessionToken)
+            Logger.debug(token)
             return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.INVALID_TOKEN);
         }
         req.user = user;
         req.accessToken = token;
+        Logger.debug("Pre end in AuthorizedRequest(UserService)")
         return;
     }
 

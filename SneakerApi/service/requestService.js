@@ -33,7 +33,6 @@ class requestService {
             for (let index = 0; index < functions.length; ++index) {
                 const job = functions[index]
                 await job(req, res)
-
                 if (this.requestFailed(res)) {
                     return this._sendError(req, res);
                 }

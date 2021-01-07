@@ -1,7 +1,7 @@
 const mongoose = require("./database");
 const ressources = require("../../resource/constant");
 const userSchema = require("../schema/userSchema");
-
+Logger = require('../../Util/Util').Logger
 const ressourcesConnection = ressources.connections;
 
 let userModel;
@@ -72,9 +72,16 @@ async function removeFavoriteId(username, id) {
     return userModel.updateOne({_username: username}, {_favorites: favoritesWithoutId})
 }
 
+
 async function getFavoriteId(username) {
     let user = await userModel.findOne({_username: username});
     return user._favorites
+}
+
+async function chatsOfUserContainsId(username, id) {
+    let user = await userModel.findOne({_username: username});
+
+    return user._chats.includes(id);
 }
 
 async function addChatId(username, id) {
@@ -87,6 +94,7 @@ async function getChats(id) {
     const user = await userModel.findById(id)
     return user._chats
 }
+
 async function addRatingId(username, id) {
     let user = await userModel.findOne({_username: username});
     user._ratings.push(id)
@@ -120,5 +128,6 @@ module.exports = {
     addChatId,
     getUserWithId,
     idExist,
-    getChats
+    getChats,
+    chatsOfUserContainsId
 };

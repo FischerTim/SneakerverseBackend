@@ -739,6 +739,137 @@ paths:
                 example:
                   errorDescription: Something went wrong. Please try it again
       tags: [ ]
+  /offer/selected:
+    get:
+      summary: Get all offers
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    id:
+                      type: string
+              example:
+                ids: [ 5fbf7bebcbf1374sdfsd1233fa6ded41,123123123343tre34256049875023zuvntc3t4 ]
+      responses:
+        200:
+          description: Successfull loaded all offers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      offers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            _name:
+                              type: string
+                            _description:
+                              type: string
+                            _size:
+                              type: double
+                            _brand:
+                              type: string
+                            _price:
+                              type: double
+                            _condition:
+                              type: string
+                            _created:
+                              type: date
+                            _ownerName:
+                              type: string
+                            _id:
+                              type: string
+                            _city:
+                              type: object
+                              properties:
+                                _latitude:
+                                  type: double
+                                _longitude:
+                                  type: double
+                                _cityName:
+                                  type: string
+                                _id:
+                                  tpye: string
+
+
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    offers:
+                      - _id: 5fbf7bebcbf13743fa6ded41
+                        _name: Testoffer1
+                        _description: New Offer
+                        _price: 9.1
+                        _size: 7
+                        _brand: Nike
+                        _condition: New
+                        _ownerName: TestUser
+                        _created: 2020-11-26T09:56:59.929Z
+                        _city:
+                          _id: 5fd62b19fbefa6181053a9f1
+                          _latitude: 8.2
+                          _longitude: 9.0
+                          _cityName: Wiesbaden
+        400:
+          description: Please add a valid body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: You body was not correct
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
+
+      tags: [ ]
   /chat:
     get:
       summary: Get all Chats of user
@@ -906,6 +1037,116 @@ paths:
                     type: string
                 example:
                   errorDescription: database failed to create ressource
+      tags: [ ]
+  /chat/selected:
+    get:
+      summary: Get all Chats of user
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    id:
+                      type: string
+              example:
+                ids: [ 5fbf7bebcbf1374sdfsd1233fa6ded41,123123123343tre34256049875023zuvntc3t4 ]
+      responses:
+        200:
+          description: Successfull checked header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      chats:
+                        type: array
+                          items:
+                            type: object
+                            properties:
+                              _subcriber:
+                                type: array
+                                  items:
+                                    type: string
+                              _id:
+                                type: string
+                              _messages:
+                                type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      _senderId:
+                                        type: string
+                                      _message:
+                                        tpye: string
+                                      _chatId:
+                                        tpye: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    chats:
+                      - _subcriber:
+                          - Tim119
+                          - Tim11911
+                        _id: 5fbf7bebcbf13743fa6ded41,
+                        _messages:
+                          - _senderId: eyJhbGciasdasdasdad
+                            _message: hallo Welt
+                            _chatId: 5fcb4c6615a1db0bd2abcec1
+        400:
+          description: Please add a valid body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: You body was not correct
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
       tags: [ ]
   /chat/message:
     post:
@@ -1131,7 +1372,7 @@ paths:
       tags: [ ]
   /rating:
     get:
-      summary: get rating with id
+      summary: get ratings with ids
       security:
         - bearerAuth: [ ]
       requestBody:
@@ -1140,10 +1381,13 @@ paths:
             schema:
               type: object
               properties:
-                ratingId:
-                  type: string
+                ids:
+                  type: array
+                  items:
+                    id:
+                      type: string
               example:
-                ratingId: 5fdf48500e48d2c65b6ac1d4
+                ids: [ 5fbf7bebcbf1374sdfsd1233fa6ded41,123123123343tre34256049875023zuvntc3t4 ]
       responses:
         200:
           description: Successfull

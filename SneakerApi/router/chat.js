@@ -18,6 +18,13 @@ router.get("/", async function (req, res) {
     ])
 });
 
+router.get("/selected", async function (req, res) {
+    await requestService.runEachFunctionAsPipeline(req, res, [
+        userService.authorizedRequest,
+        chatService.chatsWithIds
+    ])
+});
+
 router.post("/message", async function (req, res) {
     await requestService.runEachFunctionAsPipeline(req, res, [
         userService.authorizedRequest,

@@ -35,7 +35,9 @@ async function _deleteOfferWithId(id) {
     }
     return offerModel.deleteOne({_id: id});
 }
-
+async function offerWithIdExist(id) {
+    return offerModel.findOne({_id: id}) ? true : false;
+}
 
 async function _addOffer(name, description, price, size, brand, condition, ownerName, city) {
     const offerObject = {
@@ -92,5 +94,6 @@ module.exports = {
     offerWithName: _offerWithName,
     addOffer: _addOffer,
     offerWithId: _offerWithId,
-    deleteOfferWithId: _deleteOfferWithId
+    deleteOfferWithId: _deleteOfferWithId,
+    offerWithIdExist
 };
