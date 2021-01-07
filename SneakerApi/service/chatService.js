@@ -123,7 +123,7 @@ class chatService {
         const chatMessage = await chatMessageDatabase.createMessage(req.chatId, req.user.username, req.chatMessage)
         await chatDatabase.insertChatMessage(chatMessage)
         const chatMessages = await chatDatabase.chatMessages(req.chatId)
-        req.websocketService.sendToRoom(req.chatId, chatMessages)
+        req.websocketService.sendToRoom(req.chatId, {messages: chatMessages})
     }
 
 }
