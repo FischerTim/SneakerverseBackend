@@ -37,5 +37,7 @@ router.use(resource.profile, profileRouter)
 const ratingRouter = require('./rating')
 router.use(resource.rating, ratingRouter)
 
+const staticRouter = require('./static')
+router.use(resource.static, staticRouter)
 
 module.exports = router

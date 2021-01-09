@@ -6,6 +6,184 @@ components:
       scheme: bearer
       bearerFormat: JWT
 paths:
+  /blog:
+    get:
+      summary: get Blog
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Successfull checked header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  data:
+                    tpye: object
+                    properties:
+                      blog:
+                        type: array
+                        items:
+                          blog:
+                            type: object
+                            properties:
+                              title:
+                                type: string
+                              cover:
+                                tpye: string
+                              category:
+                                type: string
+                              description:
+                                tpye: string
+                              contentPictures:
+                                type: array
+                                items:
+                                  link:
+                                    type: string
+                              shareLink:
+                                type: string
+                              contentVideo:
+                                type: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    blog:
+                      - title: Sneakercon
+                        cover: https://sneakernews.com/wp-content/uploads/2019/09/sneaker-con-toronto-2019-info-tickets.jpg
+                        category: event
+                        description: description text
+                        contentPictures: [ https://www.star-telegram.com/entertainment/arts-culture/gli0vs/picture158437694/alternates/FREE_1140/SneakerCon,https://i.pinimg.com/originals/ae/e4/0c/aee40c94d255e3d33d00c722500a482d.jpg ]
+                        shareLink: https://stockx.com/
+                        contentVideo: NLILkbfgoQ8
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
+      tags: [ ]
+  /releaseCalendar:
+    get:
+      summary: get release calendar
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Successfull checked header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  data:
+                    tpye: object
+                    properties:
+                      releaseCalendar:
+                        type: array
+                        items:
+                          releaseCalendaritem:
+                            type: object
+                            properties:
+                              title:
+                                type: string
+                              imageURL:
+                                tpye: string
+                              retailPrice:
+                                type: string
+                              priceSpan:
+                                tpye: string
+                              releaseDate:
+                                tpye: string
+                              imgArray:
+                                type: array
+                                items:
+                                  link:
+                                    type: string
+                              brand:
+                                type: string
+                              description:
+                                type: string
+                              position:
+                                tpye: string
+                example:
+                  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    blog:
+                      - title: Air Force 1 Low Travis Scott Cactus Jack
+                        imageURL: https://images.restocks.eu/products/CN2405-900/nike-air-force-1-low-travis-scott-cactus-jack-1-1000.png
+                        retailPrice: $160
+                        priceSpan: $420 - $561
+                        releaseDate: 11/16/2019
+                        imgArray: [ https://nssdata.s3.amazonaws.com/images/galleries/21523/17(1).jpg, https://static.highsnobiety.com/thumbor/Qwdd3FFzOQLmxOOYvVufUUOj49Q=/fit-in/1200x720/smart/static.highsnobiety.com/wp-content/uploads/2019/10/12102045/travis-scott-nike-air-force-1-texas-release-date-price-feat.jpg]
+                        brand: Nike
+                        description: description
+                        position: bottom
+        401:
+          description: Authorization failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: you need a authorization header
+        404:
+          description: Please add correct username
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: No user with this username found
+        500:
+          description: Unnkown server error please check your Body&Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorDescription:
+                    type: string
+                example:
+                  errorDescription: Something went wrong. Please try it again
+      tags: [ ]
   /user:
     get:
       summary: Check if head Authorization works
@@ -1306,16 +1484,16 @@ paths:
                     userProfile:
                       _role: User
                       _offers:
-                          - eyJhbGciasdasdasdadasdasd143
-                          - eyJhbGciasdaasdasdsdasdadasd
+                        - eyJhbGciasdasdasdadasdasd143
+                        - eyJhbGciasdaasdasdsdasdadasd
                       _favorites:
-                          - eyJhbGciasdasdasdadasdasd143
-                          - eyJhbGciasdaasdasdsdasdadasd
+                        - eyJhbGciasdasdasdadasdasd143
+                        - eyJhbGciasdaasdasdsdasdadasd
                       _chats:
-                          - eyJhbGciasdasdasdadasdasd143
-                          - eyJhbGciasdaasdasdsdasdadasd
+                        - eyJhbGciasdasdasdadasdasd143
+                        - eyJhbGciasdaasdasdsdasdadasd
                       _ratings:
-                          - 5fdf48500e48d2c65b6ac1d4
+                        - 5fdf48500e48d2c65b6ac1d4
                       _id: 5fd64098eecfaf1a376d6cb7
                       _username: Tim119
                       _password: TestPassword

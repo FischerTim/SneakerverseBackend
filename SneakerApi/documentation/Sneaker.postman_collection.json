@@ -691,6 +691,85 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Static",
+			"item": [
+				{
+					"name": "Get Blog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmJmZjU1YjE3NzhkNjYxYjE0NTI4NmMiLCJpYXQiOjE2MDcxMDI5MTZ9.7yvq6K0Gbn5SYkeXyX2bE9mdknguGf69i-Ly8yxgkik"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user\": {\n    \"username\":\"TestUser\",\n    \"password\":\"TestPassword\"\n}}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/offer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"offer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Release Calendar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MDg3MjczNTh9.24NLDmcKKnsOaMLnklbgHoVMHRvEqjVzmx1R1QMoj5Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"offer\": {\n    \"name\":\"Tims Anzeige\",\n    \"description\": \"New Offer\",\n    \"price\": 9.10,\n    \"size\": 9,\n    \"brand\": \"Nike\",\n    \"condition\": \"New\",\n    \"city\": {\n        \"latitude\":7.8,\n        \"longitude\":9.0,\n        \"cityName\": \"Wiesbaden\"\n    }\n}}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/releaseCalendar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"releaseCalendar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

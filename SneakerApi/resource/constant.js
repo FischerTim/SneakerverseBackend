@@ -60,7 +60,8 @@ const _paths = {
     chat: "/chat",
     base: "/",
     profile:"/profile",
-    rating:"/rating"
+    rating:"/rating",
+    static:"/"
 }
 const _server = {
     port: 3000
