@@ -112,12 +112,14 @@ class userService {
 
     async getProfile(req, res) {
         const requestService = req.requestService;
-
+        Logger.debug("getProfile Request Body: ",req.body)
+        Logger.debug("GetProfile Request headers: ",req.headers)
         if (!req.user) {
             return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
         }
 
         if (!req.body.username) {
+            Logger.debug("GetProfile / Body not correct need: username got: ",req.body.username)
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
         req.username = req.body.username
@@ -127,6 +129,7 @@ class userService {
             req.data.userProfile = userProfile
             return
         } catch (e) {
+            Logger.debug(e);
             return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
         }
     }

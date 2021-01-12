@@ -1,7 +1,7 @@
 const offerDatabase = require("../database/interface/offerDatabase");
 const resources = require("../resource/constant");
 const userDatabase = require("../database/interface/userDatabase");
-
+const Logger = require('../Util/Util').Logger
 const statusCode = resources.statusCode
 const responseMsg = resources.responseMsg
 
@@ -64,7 +64,8 @@ class offerService {
         if (!req.user) {
             return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
         }
-
+        Logger.debug("Add Offer Request Body: ",req.body)
+        Logger.debug("Add Offer Request headers: ",req.headers)
         if (!req.body.offer) {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }

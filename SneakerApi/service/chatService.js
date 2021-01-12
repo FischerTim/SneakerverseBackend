@@ -119,8 +119,10 @@ class chatService {
         if (!chat._subscriber.includes(req.user.id)) {
             return requestService.createFailResponse(res, req, statusCode.FORBIDDEN, responseMsg.NO_PERMISSIONS);
         }
+        Logger.debug(chat)
 
         const chatMessage = await chatMessageDatabase.createMessage(req.chatId, req.user.username, req.chatMessage)
+        Logger.debug(chatMessage)
         await chatDatabase.insertChatMessage(chatMessage)
         const chatMessages = await chatDatabase.chatMessages(req.chatId)
         req.websocketService.sendToRoom(req.chatId, {messages: chatMessages})

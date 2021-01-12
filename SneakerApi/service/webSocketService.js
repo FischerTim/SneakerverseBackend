@@ -33,6 +33,7 @@ function get(server) {
             socket.leave(room);
             logger.debug("user left the room: "+room)
         });
+
     });
     socketIo.sendToRoom = (roomId, message) => {
         logger.debug("user send message: "+message +" to roomid:" +roomId)
