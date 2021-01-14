@@ -39,7 +39,7 @@ async function offerWithIdExist(id) {
     return offerModel.findOne({_id: id}) ? true : false;
 }
 
-async function _addOffer(name, description, price, size, brand, condition, ownerName, city) {
+async function _addOffer(name, description, price, size, brand, condition, ownerName, city,ownerId) {
     const offerObject = {
         _name: name,
         _description: description,
@@ -48,6 +48,7 @@ async function _addOffer(name, description, price, size, brand, condition, owner
         _brand: brand,
         _condition: condition,
         _ownerName: ownerName,
+        _ownerId: ownerId,
         _cityName: {}
     }
     try {

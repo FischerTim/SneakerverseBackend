@@ -70,7 +70,8 @@ class offerService {
             return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
         req.offer = req.body.offer
-        const newOffer = await offerDatabase.addOffer(req.offer.name, req.offer.description, req.offer.price, req.offer.size, req.offer.brand, req.offer.condition, req.user.username, req.offer.city);
+        req.ownerId = (await userDatabase.getUserWithUsername(req.user.username))._id
+        const newOffer = await offerDatabase.addOffer(req.offer.name, req.offer.description, req.offer.price, req.offer.size, req.offer.brand, req.offer.condition, req.user.username, req.offer.city,req.ownerId );
 
         if (!newOffer) {
             return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);

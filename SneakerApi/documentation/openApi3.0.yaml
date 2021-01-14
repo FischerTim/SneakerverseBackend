@@ -664,6 +664,8 @@ paths:
                               type: string
                             _id:
                               type: string
+                            _ownerId:
+                              tppe: string
                             _city:
                               type: object
                               properties:
@@ -690,6 +692,7 @@ paths:
                         _condition: New
                         _ownerName: TestUser
                         _created: 2020-11-26T09:56:59.929Z
+                        _ownerId: 1243356732wesdfgh546ers
                         _city:
                           _id: 5fd62b19fbefa6181053a9f1
                           _latitude: 8.2

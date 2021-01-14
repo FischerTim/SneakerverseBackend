@@ -10,5 +10,6 @@ module.exports = new mongoose.Schema({
     _created: {type: Date, default: Date.now, required: true},
     _condition: {type: String, required: true},
     _ownerName: {type: String, required: true},
+    _ownerId:{type: String, required: true},
     _city: {type: City,required: true},
 });
