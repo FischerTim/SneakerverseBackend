@@ -1415,8 +1415,8 @@ paths:
                 example:
                   errorDescription: Something went wrong. Please try it again
         tags: [ ]
-  /profile:
-    get:
+  /profile/get:
+    post:
       summary: get profile information about user
       security:
         - bearerAuth: [ ]
