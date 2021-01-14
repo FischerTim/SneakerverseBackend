@@ -1161,8 +1161,15 @@ paths:
                 properties:
                   accessToken:
                     type: string
+                  data:
+                    type: object
+                    properties:
+                    id:
+                      type: string
                 example:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    id: 12345656345634564356
         400:
           description: Please add a valid body
           content:

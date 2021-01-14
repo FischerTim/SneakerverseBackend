@@ -52,6 +52,7 @@ class chatService {
 
         await userService.addChatId(req.user.username, newChat._id)
         await userService.addChatId(secondUser._username, newChat._id)
+        req.data.id = newChat._id
         return;
     }
 
