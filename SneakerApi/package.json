@@ -15,16 +15,19 @@
     "express": "~4.16.1",
     "express-oas-generator": "^1.0.28",
     "express-session": "^1.17.1",
+    "file": "^0.2.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.13",
     "mongoose-double": "^0.0.1",
     "mongoose-long": "^0.3.2",
     "morgan": "~1.9.1",
+    "multer": "^1.4.2",
     "nodemon": "^2.0.6",
     "npx": "^10.2.2",
     "socket.io": "2.0",
     "swagger-ui-express": "^3.0.10",
+    "upload": "^1.1.1",
     "yamljs": "^0.3.0"
   }
 }

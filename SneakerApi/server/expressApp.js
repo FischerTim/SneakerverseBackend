@@ -6,7 +6,7 @@ const logger = require('morgan');
 const resource = require('../resource/constant')
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
-
+const myLogger = require('../Util/Util').Logger
 const expressApp = express();
 
 expressApp.use(cors())
@@ -17,6 +17,10 @@ expressApp.use(cookieParser());
 expressApp.use(express.static(path.join(__dirname, 'public')));
 expressApp.use((req, res, next) => {
     req.data = {}
+    next()
+})
+expressApp.use((req, res, next) => {
+    myLogger.debug(req.body)
     next()
 })
 expressApp.set('port', resource.server.port);
