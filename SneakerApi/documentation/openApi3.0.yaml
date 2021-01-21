@@ -791,8 +791,15 @@ paths:
                 properties:
                   accessToken:
                     type: string
+                  data:
+                    type: object
+                    properties:
+                      offerId:
+                        type: string
                 example:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                  data:
+                    offerId: fdgsfg9sdf7gsdzfsdzfg87szdrgf7sz
         400:
           description: Please add a valid body
           content:

@@ -77,7 +77,7 @@ class offerService {
             return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
         }
         await userService.addOfferId(req.user.username, newOffer._id)
-
+        req.data.offerId = newOffer._id
         return;
     }
 
