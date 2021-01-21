@@ -1558,8 +1558,8 @@ paths:
                 example:
                   errorDescription: Something went wrong. Please try it again
       tags: [ ]
-  /rating:
-    get:
+  /rating/get:
+    post:
       summary: get ratings with ids
       security:
         - bearerAuth: [ ]
@@ -1655,6 +1655,7 @@ paths:
                     type: string
                 example:
                   errorDescription: Something went wrong. Please try it again
+  /rating:
     post:
       summary: Check if head Authorization works
       security:

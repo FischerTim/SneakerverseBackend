@@ -7,7 +7,7 @@ module.exports = new mongoose.Schema({
     _sessionToken: {type: String},
     _offers: {type: []},
     _favorites: {type: []},
-    _registered: {type: Date, default: Date.now, required: true},
+    _registered: {type: String, required: true},
     _chats: {type: []},
     _city: {type: City},
     _ratings: {type:[]}

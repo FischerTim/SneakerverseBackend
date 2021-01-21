@@ -41,7 +41,16 @@ async function idExist(id) {
 }
 
 async function registerUser(username, password) {
-    return await userModel.create({_username: username, _password: password});
+    const date = new Date(Date.now())
+    let d = date.getDay()
+    d = d.toString().length === 1 ? "0" + d.toString() : d.toString()
+    let m = date.getMonth() + 1
+    m = m.toString().length === 1 ? "0" + m.toString() : m.toString()
+    let y = date.getFullYear()
+    y= y.toString()[2]+y.toString()[3]
+    let lh = date.getHours()
+    let tm = date.getMinutes()
+    return await userModel.create({_username: username, _password: password, _registered:[d, m, y].join(".") + " " + [lh, tm].join(":")});
 }
 
 async function updateUserToken(username, token) {
