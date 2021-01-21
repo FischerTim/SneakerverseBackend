@@ -1,7 +1,7 @@
 install:
 	npm install
-run:
+run: install
 	npm run dev
-debug:
+debug: install
 	npm run debug
 

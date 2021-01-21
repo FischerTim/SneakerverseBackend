@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Double = require('@mongoosejs/double');
+
 const City = require('./citySchema')
 module.exports = new mongoose.Schema({
     _name: {type: String, required: true},
@@ -10,6 +11,20 @@ module.exports = new mongoose.Schema({
     _created: {type: Date, default: Date.now, required: true},
     _condition: {type: String, required: true},
     _ownerName: {type: String, required: true},
-    _ownerId:{type: String, required: true},
-    _city: {type: City,required: true},
-});
+    _ownerId: {type: String, required: true},
+    _city: {type: City, required: true},
+    _img: {
+        type: [{
+            _name: String,
+            _desc: String,
+            _img:
+                {
+                    _data: Buffer,
+                    _contentType: String
+                }
+        }
+        ],
+        required: false
+    }
+})
+;

@@ -35,11 +35,12 @@ async function _deleteOfferWithId(id) {
     }
     return offerModel.deleteOne({_id: id});
 }
+
 async function offerWithIdExist(id) {
     return offerModel.findOne({_id: id}) ? true : false;
 }
 
-async function _addOffer(name, description, price, size, brand, condition, ownerName, city,ownerId) {
+async function _addOffer(name, description, price, size, brand, condition, ownerName, city, ownerId) {
     const offerObject = {
         _name: name,
         _description: description,
@@ -81,11 +82,16 @@ async function _addOffer(name, description, price, size, brand, condition, owner
     }
 }
 
-/*
-async function _deleteTodoById(id){
-  return userModel.deleteOne({_id:id}) 
+
+async function addImageToOffer(id, obj) {
+    //Todo this is a test need to create obj in this method
+    const offer = await offerModel.findOne({_id: id});
+    offer._img = offer._img ? offer._img : []
+    offer._img.push(obj)
+    return await offerModel.updateOne({_id: id}, {_img: offer._img})
 }
 
+/*
 async function _updateTodo(_title, _completed, id){
   return userModel.updateOne({_id: id}, {title:_title, completed: _completed} )
 }*/
@@ -96,5 +102,5 @@ module.exports = {
     addOffer: _addOffer,
     offerWithId: _offerWithId,
     deleteOfferWithId: _deleteOfferWithId,
-    offerWithIdExist
+    offerWithIdExist, addImageToOffer
 };

@@ -150,6 +150,55 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Updload images",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MTA3MDUxNjB9.2QV2oOdqOspQX9aEcyMWwmAI42sQ8sV0JOEc0hofkZ8"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/offer/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"offer",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "offerId",
+									"value": "60004862b7e21682f9fb80a1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
