@@ -628,11 +628,8 @@
 			"item": [
 				{
 					"name": "get ratings by id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -641,23 +638,24 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MTAwMTQyMDl9.rpxA8KJYh5lZJ8uD86fxUKqLBQer2nMTTuisPXeobjg",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MTEzMDkxNDB9.n4m8gpMnID-QxhD_UsBHze1noyX4Ceh8YKznfQPRFgE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ids\":[\"5ff6e11ea30b2a94adaa0605\"]\n}"
+							"raw": "{\n    \"ids\":[\"600aa07873183c0aa5a306a1\"]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/rating",
+							"raw": "http://localhost:3000/rating/get",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"rating"
+								"rating",
+								"get"
 							]
 						}
 					},
@@ -676,22 +674,22 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MDg0Njc5NDd9.CE-e8E5Mbtp03poc9DhG_7ImsnGAdPGYBx9rC-h3Dak"
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MTEzMDkxNDB9.n4m8gpMnID-QxhD_UsBHze1noyX4Ceh8YKznfQPRFgE"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"rating\":{\n        \"targetUsername\":\"Tim119\",\n        \"rating\":1\n    }\n}"
+							"raw": "{\n    \"rating\":{\n        \"targetUsername\":\"Tim119\",\n        \"rating\":1,\n        \"message\":\"Nice guy\"\n    }\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/profile",
+							"raw": "http://localhost:3000/rating",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"profile"
+								"rating"
 							]
 						}
 					},
@@ -704,11 +702,8 @@
 			"item": [
 				{
 					"name": "get Profile",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -717,23 +712,24 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTExOSIsInJvbGUiOiJVc2VyIiwiaWQiOiI1ZmQ2NDA5OGVlY2ZhZjFhMzc2ZDZjYjciLCJpYXQiOjE2MDg0NjA5MDR9.sKTjd80fXTt2K7o9GQac1mTj0yN8XgPWIIWILvxRjAg",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbTIwIiwicm9sZSI6IlVzZXIiLCJpZCI6IjYwMDliMzFjOGQyOTg3OWUwOWYwNzc3NCIsImlhdCI6MTYxMTI0ODQxMn0.TubihDrBjko4CNqlP4CSh7vwzVf6lugSydGxL87I0iM",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\":\"Tim119\"\n}"
+							"raw": "{\n    \"username\":\"Tim20\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/profile",
+							"raw": "http://localhost:3000/profile/get",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"profile"
+								"profile",
+								"get"
 							]
 						}
 					},
