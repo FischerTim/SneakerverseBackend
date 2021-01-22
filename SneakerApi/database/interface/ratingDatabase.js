@@ -15,10 +15,13 @@ async function connect() {
 
 connect();
 
-async function createRate(targetUsername, rating, evaluatorName) {
+async function createRate(targetUsername, rating, evaluatorName, message) {
     let newRate = {
         _targetUsername: targetUsername,
         _rating: rating,
+    }
+    if(message){
+        newRate._message = message
     }
     if (evaluatorName) {
         newRate._evaluatorName = evaluatorName

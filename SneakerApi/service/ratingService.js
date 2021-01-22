@@ -58,7 +58,7 @@ class ratingService {
 
         try {
 
-            const rating = await ratingDatabase.createRate(req.rating.targetUsername, req.rating.rating, req.user.username)
+            const rating = await ratingDatabase.createRate(req.rating.targetUsername, req.rating.rating, req.user.username, req.rating.message)
             await userDatabase.addRatingId(rating._targetUsername, rating._id)
 
             req.data.rating = rating

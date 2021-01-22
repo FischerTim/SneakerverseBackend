@@ -1609,6 +1609,8 @@ paths:
                             type: string
                           _created:
                             type: date
+                          _message:
+                            type: string
                 example:
                   accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                   data:
@@ -1618,6 +1620,7 @@ paths:
                       _rating: 1
                       _evaluatorName: Tim119
                       _created: 2020-12-20T12:49:20.548Z
+                      _message: nice dude
         400:
           description: invalid body
           content:
@@ -1680,10 +1683,13 @@ paths:
                       tpye: string
                     rating:
                       type: integer
+                    message:
+                      type: string
               example:
                 rating:
                   targetUsername: Tim110
                   rating: 2
+                  message: nice dude
       responses:
         200:
           description: Successfull
