@@ -3,30 +3,12 @@ const router = express.Router();
 const userService = require("../service/userService")();
 const requestService = require("../service/requestService")();
 
-router.get("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest
-    ])
-});
+router.get("/", userService.authorizedRequest, requestService.sendData);
 
-router.post("/logout", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        userService.logout
-    ])
-});
+router.post("/logout", userService.authorizedRequestNew, userService.logout, requestService.sendData);
 
-router.post("/login", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.login
-    ])
-});
+router.post("/login", userService.login, requestService.sendData);
 
-router.post("/register", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.registration
-    ])
-});
-
+router.post("/register", userService.registration, requestService.sendData);
 
 module.exports = router;

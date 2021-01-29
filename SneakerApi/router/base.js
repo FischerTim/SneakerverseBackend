@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const resource = require('../resource/constant').paths
+const resource = require('../Util/resource/constant').paths
 
 router.use((req, res, next) => {
     req.data = {}

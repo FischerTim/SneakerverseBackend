@@ -3,7 +3,7 @@ const path = require('path');
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const resource = require('../resource/constant')
+const resource = require('../Util/resource/constant')
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const myLogger = require('../Util/Util').Logger
@@ -14,13 +14,15 @@ expressApp.use(logger('dev'));
 expressApp.use(express.json());
 expressApp.use(express.urlencoded({extended: false}));
 expressApp.use(cookieParser());
-expressApp.use(express.static(path.join(__dirname, 'public')));
+
 expressApp.use((req, res, next) => {
     req.data = {}
     next()
 })
 expressApp.use((req, res, next) => {
-    myLogger.debug(req.body)
+    if(!req.body){
+        res.status(400).send("Body missing")
+    }
     next()
 })
 expressApp.set('port', resource.server.port);

@@ -34,7 +34,6 @@ const _statusCode = {
     NOT_FOUND: 404,
     CONFLICT: 409,
     UNKNOWN: 500
-
 }
 
 const _responseMsg = {
@@ -45,7 +44,7 @@ const _responseMsg = {
     USERNAME_USED: "This username is already used",
     USER_NOT_FOUND: "No user with this data found",
     AUTHORIZATION_FAILED: "Authorization failed",
-    DATABASE_REQUEST_FAILED: "database failed accessing resource",
+    DATABASE_REQUEST_FAILED: "database_interface failed accessing resource",
     OFFER_NOT_FOUND: "Can't find resource",
     NO_PERMISSIONS: "You are not permit to use that resource",
     DUPLICATE_SUBSCRIBERS_CHAT: "Users already chatted",
@@ -53,9 +52,9 @@ const _responseMsg = {
 };
 
 const _paths = {
-    offer: "/offer",
-    user: "/user",
-    docu: "/docu",
+offer: "/offer",
+user: "/user",
+docu: "/docu",
     favorite: "/favorite",
     chat: "/chat",
     base: "/",

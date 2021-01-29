@@ -1,6 +1,6 @@
 const mongoose = require("./database");
-const resources = require("../../resource/constant");
-const chatMessageSchema = require("../schema/chatMessageSchema");
+const resources = require("../Util/resource/constant");
+const chatMessageSchema = require("../Model/chatMessageSchema");
 
 const resourcesConnection = resources.connections;
 

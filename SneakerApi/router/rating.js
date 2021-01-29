@@ -4,18 +4,8 @@ const ratingService = require("../service/ratingService")();
 const requestService = require("../service/requestService")();
 const userService = require("../service/userService")();
 
-router.post("/get", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        ratingService.getRatingsWithIds
-    ])
-});
+router.post("/get", userService.authorizedRequestNew, ratingService.getRatingsWithIds, requestService.sendData);
 
-router.post("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        ratingService.addRating
-    ])
-});
+router.post("/", userService.authorizedRequestNew, ratingService.addRating, requestService.sendData);
 
 module.exports = router;

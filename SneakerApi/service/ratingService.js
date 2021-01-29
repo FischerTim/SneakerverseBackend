@@ -1,6 +1,6 @@
-const ratingDatabase = require("../database/interface/ratingDatabase");
-const resources = require("../resource/constant");
-let userDatabase = require("../database/interface/userDatabase");
+const ratingDatabase = require("../database_interface/ratingDatabase");
+const resources = require("../Util/resource/constant");
+let userDatabase = require("../database_interface/userDatabase");
 const statusCode = resources.statusCode
 const responseMsg = resources.responseMsg
 Logger = require('../Util/Util').Logger
@@ -17,14 +17,14 @@ function get() {
 }
 
 class ratingService {
-    async getRatingsWithIds(req, res) {
+    async getRatingsWithIds(req, res, next) {
         const requestService = req.requestService;
 
         if (!req.user) {
-            return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+            return requestService.responseFail(res, req, next, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
         }
         if (!req.body.ids) {
-            return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
+            return requestService.responseFail(res, req, next, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
         req.ratingId = req.body.ratingId
         try {
@@ -32,27 +32,27 @@ class ratingService {
             for (let id in req.body.ids) {
                 if(! await ratingDatabase.ratingWithIdExist(req.user.username, req.body.ids[id])){
 
-                    return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.ID_NOT_FOUND);
+                    return requestService.responseFail(res, req, next, statusCode.BAD_SYNTAX, responseMsg.ID_NOT_FOUND);
                 }
                 result.push(await ratingDatabase.getRatingWithId(req.body.ids[id]))
             }
             req.data.ratings = result
-            return
+            next()
         } catch (e) {
             Logger.debug(e)
-            return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
+            return requestService.responseFail(res, req, next, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
         }
     }
 
-    async addRating(req, res) {
+    async addRating(req, res, next) {
         const requestService = req.requestService;
         const userService = req.userService;
         if (!req.user) {
-            return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+            return requestService.responseFail(res, req, next, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
         }
 
         if (!req.body.rating) {
-            return requestService.createFailResponse(res, req, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
+            return requestService.responseFail(res, req, next, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
         req.rating = req.body.rating
 
@@ -62,10 +62,10 @@ class ratingService {
             await userDatabase.addRatingId(rating._targetUsername, rating._id)
 
             req.data.rating = rating
-            return
+            next()
         } catch (e) {
             Logger.debug(e)
-            return requestService.createFailResponse(res, req, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
+            return requestService.responseFail(res, req, next, statusCode.UNKNOWN, responseMsg.DATABASE_REQUEST_FAILED);
         }
 
     }

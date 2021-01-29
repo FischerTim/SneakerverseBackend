@@ -1,5 +1,5 @@
 let logger = ""
-const systemModes = require('../resource/constant').mods
+const systemModes = require('./resource/constant').mods
 
 function get() {
     if (logger) {

@@ -1,7 +1,7 @@
 const mongoose = require("./database");
-const ressources = require("../../resource/constant");
-const userSchema = require("../schema/userSchema");
-Logger = require('../../Util/Util').Logger
+const ressources = require("../Util/resource/constant");
+const userSchema = require("../Model/userSchema");
+Logger = require('../Util/Util').Logger
 const ressourcesConnection = ressources.connections;
 
 let userModel;

@@ -3,25 +3,11 @@ const router = express.Router();
 const userService = require("../service/userService")();
 const requestService = require("../service/requestService")();
 
-router.post("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        userService.addFavoriteId
-    ])
-});
+router.post("/", userService.authorizedRequestNew, userService.addFavoriteId, requestService.sendData);
 
-router.delete("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        userService.removeFavoriteId
-    ])
-});
-router.get("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        userService.getFavoritesId
-    ])
-});
+router.delete("/", userService.authorizedRequestNew, userService.removeFavoriteId, requestService.sendData);
+
+router.get("/", userService.authorizedRequestNew, userService.getFavoritesId, requestService.sendData);
 
 
 module.exports = router;

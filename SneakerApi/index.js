@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const resource = require('./resource/constant');
+const resource = require('./Util/resource/constant');
 const logger = require('./Util/Util').Logger
 
 const expressApp = require('./server/expressApp');

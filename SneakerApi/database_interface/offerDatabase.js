@@ -1,10 +1,10 @@
 const mongoose = require("./database");
-const resources = require("../../resource/constant");
-const offerSchema = require("../schema/offerSchema");
+const resources = require("../Util/resource/constant");
+const offerSchema = require("../Model/offerSchema");
 const cityDatabase = require("./cityDatabase");
 const resourcesConnection = resources.connections;
 const userDatabase = require("./userDatabase");
-const Validation = require('../../Util/Util').Validation
+const Validation = require('../Util/Util').Validation
 let offerModel;
 
 async function connect() {

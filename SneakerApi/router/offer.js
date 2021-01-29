@@ -5,38 +5,14 @@ const requestService = require("../service/requestService")();
 const userService = require("../service/userService")();
 const upload = require('../service/imageService')()
 
-router.get("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        offerService.offerList
-    ])
-});
-router.get("/selected", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        offerService.offersWithIds
-    ])
-});
+router.get("/", userService.authorizedRequestNew, offerService.offerList, requestService.sendData);
 
-router.post("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        offerService.addOffer
-    ])
-});
-router.delete("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        offerService.deleteOffer
-    ])
-});
-router.post("/upload", upload.single('pic') , async function (req, res) {
-    console.log("HAllo")
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        offerService.addImages
-    ])
-});
+router.get("/selected", userService.authorizedRequestNew, offerService.offersWithIds, requestService.sendData);
 
+router.post("/", userService.authorizedRequestNew, offerService.addOffer, requestService.sendData);
+
+router.delete("/", userService.authorizedRequestNew, offerService.deleteOffer, requestService.sendData);
+
+router.post("/upload", upload.single('pic'), userService.authorizedRequestNew, offerService.addImages, requestService.sendData);
 
 module.exports = router;

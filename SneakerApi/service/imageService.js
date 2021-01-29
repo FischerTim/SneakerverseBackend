@@ -1,4 +1,4 @@
-const resources = require("../resource/constant");
+const resources = require("../Util/resource/constant");
 let service = ""
 
 let fs = require('fs');

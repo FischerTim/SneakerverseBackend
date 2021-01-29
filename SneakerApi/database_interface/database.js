@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ressources = require("../../resource/constant");
+const ressources = require("../Util/resource/constant");
 
 const ressourcesConnection = ressources.connections;
 const ressourcesCredentials = ressources.credentials;

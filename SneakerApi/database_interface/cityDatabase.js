@@ -1,6 +1,6 @@
 const mongoose = require("./database");
-const resources = require("../../resource/constant");
-const citySchema = require("../schema/citySchema");
+const resources = require("../Util/resource/constant");
+const citySchema = require("../Model/citySchema");
 
 const resourcesConnection = resources.connections;
 

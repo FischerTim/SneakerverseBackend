@@ -4,33 +4,12 @@ const userService = require("../service/userService")();
 const requestService = require("../service/requestService")();
 const chatService = require("../service/chatService")();
 
-router.post("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        chatService.addChat
-    ])
-});
+router.post("/", userService.authorizedRequestNew, chatService.addChat, requestService.sendData);
 
-router.get("/", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        chatService.chatListOfUser
-    ])
-});
+router.get("/", userService.authorizedRequestNew, chatService.chatListOfUser, requestService.sendData);
 
-router.get("/selected", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        chatService.chatsWithIds
-    ])
-});
+router.get("/selected", userService.authorizedRequestNew, chatService.chatsWithIds, requestService.sendData);
 
-router.post("/message", async function (req, res) {
-    await requestService.runEachFunctionAsPipeline(req, res, [
-        userService.authorizedRequest,
-        chatService.addMessage
-    ])
-});
-
+router.post("/message", userService.authorizedRequestNew, chatService.addMessage, requestService.sendData);
 
 module.exports = router;

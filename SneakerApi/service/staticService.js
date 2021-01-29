@@ -1,9 +1,9 @@
-const chatDatabase = require("../database/interface/chatDatabase");
-const chatMessageDatabase = require("../database/interface/chatMessageDatabase");
-const userDatabase = require("../database/interface/userDatabase");
-const resources = require("../resource/constant");
+const chatDatabase = require("../database_interface/chatDatabase");
+const chatMessageDatabase = require("../database_interface/chatMessageDatabase");
+const userDatabase = require("../database_interface/userDatabase");
+const resources = require("../Util/resource/constant");
 const Logger = require('../Util/Util').Logger
-const staticResource = require("../resource/staticResource")
+const staticResource = require("../Util/resource/staticResource")
 const statusCode = resources.statusCode
 const responseMsg = resources.responseMsg
 
@@ -20,18 +20,22 @@ function get() {
 }
 
 class staticService {
-    async blog(req, res) {
+    async blog(req, res, next) {
+        const requestService = req.requestService;
         if (!req.user) {
-            return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+            return requestService.responseFail(res, req, next, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
         }
-        return req.data.blog = staticResource.blog;
+        req.data.blog = staticResource.blog;
+        next()
     }
 
-    async releaseCalendar(req, res) {
+    async releaseCalendar(req, res, next) {
+        const requestService = req.requestService;
         if (!req.user) {
-            return requestService.createFailResponse(res, req, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+            return requestService.responseFail(res, req, next, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
         }
-        return req.data.releaseCalendar = staticResource.releaseCalendar;
+        req.data.releaseCalendar = staticResource.releaseCalendar;
+        next()
     }
 }
 

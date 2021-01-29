@@ -1,5 +1,5 @@
 let socketIo = ""
-const resource = require('../resource/constant')
+const resource = require('../Util/resource/constant')
 const session = require("express-session");
 const logger = require('../Util/Util').Logger
 
