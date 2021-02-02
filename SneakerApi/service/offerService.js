@@ -117,8 +117,7 @@ class offerService {
         if (req.fileValidationError) {
             return requestService.responseFail(res, req, next, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
-        if (!req.file) {
-
+        if (!req.files) {
             return requestService.responseFail(res, req, next, statusCode.BAD_SYNTAX, responseMsg.INVALID_BODY);
         }
         let newOffer = await offerDatabase.offerWithId(req.query.offerId)
@@ -128,17 +127,16 @@ class offerService {
         if (newOffer._ownerName != req.user.username) {
             return requestService.responseFail(res, req, next, statusCode.FORBIDDEN, responseMsg.NO_PERMISSIONS);
         }
-        //Todo this is test code for iamges
-        const data = await fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename))
-        let obj = {
-            _name: req.file.filename,
-            _desc: req.file.destination,
-            _img: {
-                _data: await fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
-                _contentType: 'image/jpg'
-            }
+        for (const file of req.files) {
+            const fullPathToImage = path.join(__dirname + '/../uploads/' + file.filename)
+            await offerDatabase.addImageToOffer(req.query.offerId,
+                file.filename,
+                file.destination,
+                await fs.readFileSync(fullPathToImage),
+                'image/jpg'
+            );
+            fs.unlinkSync(fullPathToImage)
         }
-        await offerDatabase.addImageToOffer(req.query.offerId, obj);
 
         newOffer = await offerDatabase.offerWithId(req.query.offerId)
         req.data.o = newOffer

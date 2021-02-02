@@ -37,7 +37,7 @@ const releaseCalendar = [{
     "imageURL": "https://images.restocks.eu/products/CN2405-900/nike-air-force-1-low-travis-scott-cactus-jack-1-1000.png",
     "retailPrice": "$160",
     "priceSpan": "$420 - $561",
-    "releaseDate": "11/16/2019",
+    "releaseDate": "07/1/2021",
     "imgArray": ["https://nssdata.s3.amazonaws.com/images/galleries/21523/17(1).jpg", "https://static.highsnobiety.com/thumbor/Qwdd3FFzOQLmxOOYvVufUUOj49Q=/fit-in/1200x720/smart/static.highsnobiety.com/wp-content/uploads/2019/10/12102045/travis-scott-nike-air-force-1-texas-release-date-price-feat.jpg"],
     "brand": "Nike",
     "description": "Sein Style und sein Sinn f\u00fcr \u00c4thetik zeichneten Travis Scott bereits aus, als er noch in Houston lebte. Der AF-1 Travis Scott ist eine Hommage an seine Community, die ihn dabei unterst\u00fctzte, die kreative Inspiration durch Astroworld in seine Kunst miteinzubeziehen.Der Schuh ist eine Art Patchwork aus verschiedenen Elementen, die er mit seiner Kindheit assoziiert \u2013 die Strapazierf\u00e4higkeit von Arbeitskleidung, Farben aus der Natur und die surrealen Vibes von Astroworld.Er teilt seine Erfahrungen mit den Kids in Houston, indem er sie dazu motiviert und inspiriert, ihren ganz eigenen Weg zu gehen.",
@@ -47,7 +47,7 @@ const releaseCalendar = [{
     "imageURL": "https://i.ya-webdesign.com/images/yeezy-png-background-1.png",
     "retailPrice": "$200",
     "priceSpan": "$1,318 - $1,676",
-    "releaseDate": "06/27/2015",
+    "releaseDate": "07/11/2021",
     "imgArray": ["https://mlstaticquic-a.akamaihd.net/adidas-yeezy-boost-v1-turtle-dove-D_NQ_NP_743584-MLU27528937430_062018-F.jpg", "https://www.adidas-group.com/media/filer_public_thumbnails/filer_public/81/9b/819b0e89-ff10-49ae-9b8e-acf2187dd376/kanye_west__adidas_cmo_eric_liedtke.jpeg__1200x630_q85_autocrop_crop-smart_subject_location-1598%2C1055_subsampling-2_upscale.jpg"],
     "brand": "Adidas",
     "description": "Nach dem YEEZY Boost 750 folgte im gleichen Jahr der YEEZY Boost 350. Dieses Mal ein Low-Top Model mit nahtloser (Primeknit) Oberseite und einer wei\u00dfen Boost Sohle, daf\u00fcr ohne Middlestrap. Der erste Colorway war Turtle Dove und erfreute sich sofort regem Interesse.",
@@ -57,17 +57,18 @@ const releaseCalendar = [{
     "imageURL": "https://cdn.shopify.com/s/files/1/0684/4315/products/flightskool-air-jordan-1-1994-retro-chicago.png?v=1424828554",
     "retailPrice": "$160",
     "priceSpan": "$872 - $1,260",
-    "releaseDate": "05/30/2015",
+    "releaseDate": "07/21/2021",
     "imgArray": ["https://sneakernews.com/wp-content/uploads/2019/07/CQ4921-601.jpg?w=780", "https://www.43einhalb.com/blog/wp-content/uploads/2017/10/slack-imgs-2.jpg"],
     "brand": "Nike",
     "description": "Der Ursprung der ganzen Erfolgsgeschichte liegt bei einem zun\u00e4chst noch unbekannten College Rookie, der sich unter allen Umst\u00e4nden in der NBA beweisen wollte. Die Rede ist von keinem Geringeren als dem gro\u00dfen Michael Jordan selbst. MJ lieferte w\u00e4hrend seine College Zeit v\u00f6llig kranke Ergebnisse ab und beeindruckte unz\u00e4hlige Scouts der NBA. Doch auch abseits des Feldes erreichte Jordan das vermeintlich Unerreichbare. Noch bevor Michael \u00fcberhaupt von einem Team gedrafted worden ist, unterzeichnete er einen Vertrag mit Nike. Eine Entscheidung, die wohl keiner beim Label mit dem swoosh bereuen d\u00fcrfte. Interessanterweise wollten die anderen dominierenden Schuhmarken keine \u00dcbereinkunft mit MJ treffen. Ganz sch\u00f6n miese Entscheidung!",
     "position": "top"
-}, {
+}]
+const releaseCalendarM1 = [{
     "title": "adidas Yeezy Boost 350 V2 Zebra",
     "imageURL": "https://assets.bigcartel.com/product_images/196770802/stadvm.png?auto=format&fit=max&w=1000",
     "retailPrice": "$220",
     "priceSpan": "$267 - $312",
-    "releaseDate": "02/25/2017",
+    "releaseDate": "08/21/2021",
     "imgArray": ["https://0.kixify.com/sites/default/files/imagecache/product_full/product/2017/06/24/p_16140801_83762636_3449726.jpg", "https://3.bp.blogspot.com/-YuhyVtXqWWA/WX9MLnl-G9I/AAAAAAAAEkc/WF1xkRJgyEwoOqEZdGqrmOw4ZxQogbkKgCLcBGAs/s1600/Adidas-Yeezy-Boost-350-V2-Zebra-The-Dapifer.jpg"],
     "brand": "Adidas",
     "description": "Der Schuh wurde zum Megaerfolg und ein begehrtes Sammlerst\u00fcck. Der Verkaufspreis betrug zu diesem Zeitpunkt $350, der heutige Wiederverkaufspreis wird auf rund $2000 gesch\u00e4tzt. Um die Exklusivit\u00e4t des Sneaker zu betonen, limitierten adidas und Kanye die St\u00fcckzahl auf 9000 und verkauften ihn nur in New York. Innerhalb von 10 Minuten war der Schuh ausverkauft und der Yeezy-Hype begann seinen Siegeszug.",
@@ -77,7 +78,7 @@ const releaseCalendar = [{
     "imageURL": "https://static.sneakerjagers.com/products/660x660/78123.jpg",
     "retailPrice": "$110",
     "priceSpan": "$71 - $112",
-    "releaseDate": "12/01/2018",
+    "releaseDate": "08/11/2021",
     "imgArray": ["https://cdn.shopify.com/s/files/1/0255/3220/3107/products/47A8FAE5-BC74-4D3A-9FD5-2F3E4FE6B5B8.jpg?v=1571722956", "https://www.sneakers-actus.fr/wp-content/uploads/2018/11/Puma-RS-X-Toys-Reinvention-Bonnie-Blue-Sweet-Lavender.jpg"],
     "brand": "Puma",
     "description": "Die 80er hatten bekannterma\u00dfen so einiges zu bieten. Wie zum Beispiel das PUMA Running System. Oder das coolste Spielzeug aller Zeiten. Der RS-X TOYS feiert beides und pr\u00e4sentiert sich in jeder seiner Versionen wie ein echtes Sammlerst\u00fcck, das viele von uns wahrscheinlich bei blo\u00dfer Betrachtung direkt in unsere Kindheit und zu unserem Lieblingsspielzeug zur\u00fcckversetzt. Farben, wie man sie nur noch aus den Videospielhallen der 80er kennt, treffen bei diesem grandiosen Style auf ein super atmungsaktives Obermaterial aus Mesh. F\u00fcge ein einzigartiges D\u00e4mpfungssystem und eine griffige Sohle hinzu \u2013 und fertig ist der perfekte Retro-Running-Sneaker.",
@@ -87,7 +88,7 @@ const releaseCalendar = [{
     "imageURL": "https://www.yeezypop.com/wp-content/uploads/2019/07/b75571_1.png",
     "retailPrice": "$300",
     "priceSpan": "$365 - $398",
-    "releaseDate": "11/01/2017",
+    "releaseDate": "08/01/2021",
     "imgArray": ["https://sneakernews.com/wp-content/uploads/2019/08/YEEZY-700-WAVERUNNER-STORE-LIST.jpg", "https://i.ytimg.com/vi/4lYwvw5YB18/maxresdefault.jpg"],
     "brand": "Adidas",
     "description": "Der \u00bbChunky Sneaker\u00ab kommt mit einem Upper aus grauen und schwarzen Wildleder-Overlays und Premium-Leder mit blauen und gr\u00fcnen Mesh-Eins\u00e4tzen sowie reflektierenden Details an der Ferse. Gelbe Laces und orangefarbene Akzente an der Mittelsohle runden den Look ab! Die durchgehende BOOST-Mittelsohle bietet Dir Komfort und Stabilit\u00e4t.",
@@ -96,5 +97,6 @@ const releaseCalendar = [{
 
 module.exports ={
     releaseCalendar,
+    releaseCalendarM1,
     blog
 }

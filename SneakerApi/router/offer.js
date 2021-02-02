@@ -13,6 +13,6 @@ router.post("/", userService.authorizedRequestNew, offerService.addOffer, reques
 
 router.delete("/", userService.authorizedRequestNew, offerService.deleteOffer, requestService.sendData);
 
-router.post("/upload", upload.single('pic'), userService.authorizedRequestNew, offerService.addImages, requestService.sendData);
+router.post("/upload", upload.array('pic'), userService.authorizedRequestNew, offerService.addImages, requestService.sendData);
 
 module.exports = router;

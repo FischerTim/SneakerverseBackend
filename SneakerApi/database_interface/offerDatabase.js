@@ -83,8 +83,16 @@ async function _addOffer(name, description, price, size, brand, condition, owner
 }
 
 
-async function addImageToOffer(id, obj) {
-    //Todo this is a test need to create obj in this method
+async function addImageToOffer(id, name, desc, data, contentType) {
+
+    const obj = {
+        _name: name,
+        _desc: desc,
+        _img: {
+            _data: data,
+            _contentType: contentType
+        }
+    }
     const offer = await offerModel.findOne({_id: id});
     offer._img = offer._img ? offer._img : []
     offer._img.push(obj)

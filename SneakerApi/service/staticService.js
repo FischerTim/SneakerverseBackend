@@ -37,6 +37,14 @@ class staticService {
         req.data.releaseCalendar = staticResource.releaseCalendar;
         next()
     }
+    async releaseCalendarM1(req, res, next) {
+        const requestService = req.requestService;
+        if (!req.user) {
+            return requestService.responseFail(res, req, next, statusCode.UNAUTHORIZED, responseMsg.AUTHORIZATION_FAILED);
+        }
+        req.data.releaseCalendar = staticResource.releaseCalendarM1;
+        next()
+    }
 }
 
 module.exports = get
