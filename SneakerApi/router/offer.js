@@ -7,7 +7,7 @@ const upload = require('../service/imageService')()
 
 router.get("/", userService.authorizedRequestNew, offerService.offerList, requestService.sendData);
 
-router.get("/selected", userService.authorizedRequestNew, offerService.offersWithIds, requestService.sendData);
+router.post("/selected", userService.authorizedRequestNew, offerService.offersWithIds, requestService.sendData);
 
 router.post("/", userService.authorizedRequestNew, offerService.addOffer, requestService.sendData);
 

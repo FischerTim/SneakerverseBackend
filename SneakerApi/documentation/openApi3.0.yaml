@@ -1020,7 +1020,7 @@ paths:
                   errorDescription: Something went wrong. Please try it again
       tags: [ ]
   /offer/selected:
-    get:
+    post:
       summary: Get all offers
       security:
         - bearerAuth: [ ]

@@ -141,7 +141,6 @@ class offerService {
         newOffer = await offerDatabase.offerWithId(req.query.offerId)
         req.data.o = newOffer
         next()
-
     }
 }
 

@@ -115,11 +115,8 @@
 				},
 				{
 					"name": "get selected offers",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
